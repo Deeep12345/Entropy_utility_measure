@@ -18,16 +18,11 @@ def auto_tune():
         sklearn.model_selection.train_test_split(X, y, random_state=1)
 
     automl = autosklearn.classification.AutoSklearnClassifier(
-        time_left_for_this_task=2*60*60,
-        per_run_time_limit=30*60,
+        time_left_for_this_task=12*60*60,
+        per_run_time_limit=60*60,
         tmp_folder='/tmp/autosklearn_parallel_1_example_tmp',
         output_folder='/tmp/autosklearn_parallel_1_example_out',
         disable_evaluator_output=False,
-        # 'holdout' with 'train_size'=0.67 is the default argument setting
-        # for AutoSklearnClassifier. It is explicitly specified in this example
-        # for demonstrational purpose.
-        resampling_strategy='holdout',
-        resampling_strategy_arguments={'train_size': 0.67},
         n_jobs=4,
         seed=5,
         delete_output_folder_after_terminate=True,
@@ -38,6 +33,7 @@ def auto_tune():
     # Print the final ensemble constructed by auto-sklearn.
     print(automl.show_models())
     predictions = automl.predict(X_test)
+
     print("\n\n\n\n\n######################################")
     # Print the final ensemble constructed by auto-sklearn.
     # Print statistics about the auto-sklearn run such as number of
@@ -45,6 +41,9 @@ def auto_tune():
     print(automl.sprint_statistics())
     print("Accuracy score", sklearn.metrics.accuracy_score(y_test, predictions))
 
+    
+    print("\n\n\n\n\n######################################")
+    print(automl.get_params())
 
 if __name__ == '__main__':
     auto_tune()

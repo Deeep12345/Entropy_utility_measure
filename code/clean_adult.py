@@ -10,19 +10,10 @@ adult = pd.read_csv('../adult/adult.csv', delimiter=', ')
 data = adult
 
 data['salary'] = data['salary'].map({ "<=50K": 0, ">50K": 1 })
-y = data['salary']
-data = data.drop('salary', axis=1)
-
-data = data.drop("capital-gain", axis=1)
-data = data.drop("capital-loss", axis=1)
-
 data = pd.get_dummies(data, columns=[
     "workclass", "education", "marital-status", "occupation", "relationship",
     "race", "sex", "native-country",
 ])
-
-data['salary'] = y
-print(data)
 
 data.to_csv('../adult/clean_adult.csv')
 #X_train, X_test, y_train, y_test = train_test_split(
