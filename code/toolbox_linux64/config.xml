@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <!-- Name attributes of 'att' nodes are not used, included just for reference.-->
-<config method='Mondrian' k='10'>
-	<input filename='../../adult/categorically_numbered.csv' separator=','/> <!-- If left blank, separator will be set as comma by default.-->
-	<output filename='../anon_data/mondrian10' format ='genVals'/> <!-- Format options = {genVals, genValsDist, anatomy}. If left blank,
+<config method='Datafly' k='2'>
+
+	<input filename='../../adult/categorically_numbered.csv' separator=','/>
+	 <!-- If left blank, separator will be set as comma by default.-->
+	<output filename='../anon_data/datafly2.csv' format ='genVals'/>
+	 <!-- Format options = {genVals, genValsDist, anatomy}. If left blank,
 	output format will be set as genVals by default.-->
 	<id> <!-- List of identifier attributes, if any, these will be excluded from the output -->
-		<att index='0' name='index'/>
 	</id>
 
 
@@ -37,9 +39,9 @@
 		<att index='2' name='workclass'>
 			<vgh value='[0:6]'>
 				<!-- GOV employed -->
-				<node value='[0:3)'></node>
+				<node value='[0:2]'></node>
 				<!-- Self or privately employed -->
-				<node value='[3:6)'></node>
+				<node value='[3:5]'></node>
 				<!-- Without pay -->
 				<node value='[6:6]'></node>
 			</vgh>
@@ -86,16 +88,16 @@
 		<att index='4' name='education-num'>
 			<vgh value='[0:15]'>
 				<!-- HS or less-->
-				<node value='[0:9)'>
+				<node value='[0:8]'>
 					<!-- Less than HS -->
-					<node value='[0:5)'/>
+					<node value='[0:4]'/>
 					<!-- HS -->
-					<node value='[5:9)'/>
+					<node value='[5:8]'/>
 				</node>
 				<!-- Further Studies -->
 				<node value='[9:15]'>
 					<!-- Bachelor or less -->
-					<node value='[9:14)'/>
+					<node value='[9:13]'/>
 					<!-- Masters or more -->
 					<node value='[14:15]'/>
 				</node>
@@ -104,9 +106,9 @@
 		<att index='5' name='marital-status'>
 			<vgh value='[0:6]'>
 				<!-- Married -->
-				<node value='[0:3)'/>
+				<node value='[0:2]'/>
 				<!-- Once Married -->
-				<node value='[3:6)'/>
+				<node value='[3:5]'/>
 				<!-- Never Married -->
 				<node value='[6:6]'/>
 			</vgh>
@@ -114,11 +116,11 @@
 		<att index='6' name='occupation'>
 			<vgh value='[0:13]'>
 				<!-- "Manual" -->
-				<node value='[0:6)'/>
+				<node value='[0:5]'/>
 				<!-- "Desk work" -->
-				<node value='[6:11)'/>
+				<node value='[6:10]'/>
 			  <!-- "Military or Police" -->
-				<node value='[11:13)'/>
+				<node value='[11:12]'/>
 				<!-- "Other" -->
 				<node value='[13:13]'/>
 			</vgh>
@@ -155,27 +157,27 @@
 			</vgh>
 		</att>
 		<att index='11' name='hours-per-week'>
-			<vgh value='[0:100)'>
+			<vgh value='[0:100]'>
 				<!-- Part time -->
-				<node value='[0:20)'/>
+				<node value='[0:20]'/>
 				<!-- Full time -->
-				<node value='[21:41)'/>
+				<node value='[21:40]'/>
 				<!-- Overtime -->
-				<node value='[41:61)'/>
+				<node value='[41:60]'/>
 				<!-- Workaholic -->
-				<node value='[61:100)'/>
+				<node value='[61:100]'/>
 			</vgh>
 		</att>
 		<att index='12' name='native-country'>
 			<vgh value='[0:39]'>
 				<!-- North American -->
-				<node value='[0:4)'/>
+				<node value='[0:3]'/>
 				<!-- South/Central American -->
-				<node value='[4:17)'/>
+				<node value='[4:16]'/>
 				<!-- Asian -->
-				<node value='[17:27)'/>
+				<node value='[17:26]'/>
 				<!-- European -->
-				<node value='[27:39)'/>
+				<node value='[27:38]'/>
 				<!-- Middle Eastern -->
 				<node value='[39:39]'/>
 			</vgh>
@@ -186,6 +188,7 @@
 
 
 	<sens>
+		<att index='0' name='index'/>
 		<att index='13' name='salary'/>
 	</sens>
 </config>
