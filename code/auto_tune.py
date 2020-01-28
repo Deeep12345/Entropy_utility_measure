@@ -1,5 +1,7 @@
 import pandas as pd
 
+import sys
+
 import sklearn.model_selection
 import sklearn.datasets
 import sklearn.metrics
@@ -7,10 +9,10 @@ import sklearn.metrics
 import autosklearn.classification
 
 
-def auto_tune():
-    data = pd.read_csv("../adult/clean_adult.csv")
-    y = data['salary']
-    X = data.drop(columns=['salary'], axis=1)
+def auto_tune(file="anon_data/adult-1hot.csv", y_name="salary"):
+    data = pd.read_csv(file)
+    y = data[y_name]
+    X = data.drop(columns=[y_name], axis=1)
     print(X)
     print(y)
 
@@ -41,9 +43,13 @@ def auto_tune():
     print(automl.sprint_statistics())
     print("Accuracy score", sklearn.metrics.accuracy_score(y_test, predictions))
 
-    
+
     print("\n\n\n\n\n######################################")
     print(automl.get_params())
 
 if __name__ == '__main__':
-    auto_tune()
+    if len(sys.argv) > 1:
+        print(f"Tuning {sys.argv[1]}")
+        auto_tune(sys.argv[1], sys.argv[2])
+    else:
+        auto_tune()
