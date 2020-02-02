@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!-- Name attributes of 'att' nodes are not used, included just for reference.-->
-<config method='Incognito_k' k='5'>
+<config method='Incognito_k' k='8'>
 
 	<input filename='../../adult/categorically_numbered.csv' separator=','/>
 	 <!-- If left blank, separator will be set as comma by default.-->
-	<output filename='../anon_data/incognito5.csv' format ='genVals'/>
+	<output filename='../anon_data/incognito8.csv' format ='genVals'/>
 	 <!-- Format options = {genVals, genValsDist, anatomy}. If left blank,
 	output format will be set as genVals by default.-->
 	<id> <!-- List of identifier attributes, if any, these will be excluded from the output -->
