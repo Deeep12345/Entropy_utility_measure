@@ -9,11 +9,11 @@ import sklearn.metrics
 import autosklearn.classification
 
 
-def auto_tune(file="anon_data/adult-1hot.csv", y_name="salary"):
+def auto_tune(file="anon_data/ring_mondrian/k2_minmaxed.csv", y_name="class"):
     data = pd.read_csv(file)
     y = data[y_name]
-    X = data.drop(columns=[y_name, "index"], axis=1)
-    X = pd.get_dummies(X)
+    print(data)
+    X = data.drop(columns=[y_name, "Unnamed: 0"], axis=1)
 
     print(X)
     print(y)
@@ -23,10 +23,10 @@ def auto_tune(file="anon_data/adult-1hot.csv", y_name="salary"):
         sklearn.model_selection.train_test_split(X, y, random_state=1)
     print(X_test.shape, X_train.shape)
     automl = autosklearn.classification.AutoSklearnClassifier(
-        time_left_for_this_task=10*60*60,
+        time_left_for_this_task=2*60*60,
         per_run_time_limit=60*60,
-        tmp_folder='/tmp/autosklearn_adult_tmp',
-        output_folder='/tmp/autosklearn_adult_out',
+        tmp_folder=None,
+        output_folder=None,
         disable_evaluator_output=False,
         n_jobs=4,
         seed=1,
