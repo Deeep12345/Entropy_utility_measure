@@ -5,9 +5,8 @@ import re
 
 
 def parse_range(x):
-    if ':' not in x:
-        print(x)
-        val = int(re.split('\.', x[1:-1])[0])
+    if isinstance(x, float):
+        val = int(x)
         return val, val
     
     vals = re.split(':', x[1:-1])
@@ -43,5 +42,6 @@ def min_max(no):
     print("############################")
 
 
-for i in range(2,13):
-    min_max(i)
+#for i in range(2,13):
+#    min_max(i)
+min_max(1)
