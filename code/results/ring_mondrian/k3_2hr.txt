@@ -1,0 +1,17 @@
+Tuning anon_data/ring_mondrian/k3_minmaxed.csv
+Loading anonymized training data...
+Loading testing data...
+Preparing train and test split...
+X shapes: ((1480, 40), (5920, 40))
+y shapes: ((1480,), (5920,))
+Starting training on anon_data/ring_mondrian/k3_minmaxed.csv...
+
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.607044)
+[WARNING] [2020-03-03 13:09:47,799:EnsembleBuilder(1791095845):ringnorm] No models better than random - using Dummy Score!
+[WARNING] [2020-03-03 13:09:47,805:EnsembleBuilder(1791095845):ringnorm] No models better than random - using Dummy Score!
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.405516)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.615614)
+Time limit for a single run is higher than total time limit. Capping the limit for a single run to the total time given to SMAC (3599.282106)
+############ Done ! ################
+
+Accuracy score 0.5844594594594594
