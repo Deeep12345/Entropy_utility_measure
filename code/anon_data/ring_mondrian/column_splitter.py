@@ -8,17 +8,17 @@ def parse_range(x):
     if isinstance(x, float):
         val = int(x)
         return val, val
-    
+
     vals = re.split(':', x[1:-1])
     vals = [bound[:-2] for bound in vals]
-    low = int(vals[0]) if x[0] == '[' else int(vals[0]) + 1 
-    high = int(vals[1]) if x[-1] == ']' else int(vals[1]) - 1 
+    low = int(vals[0]) if x[0] == '[' else int(vals[0]) + 1
+    high = int(vals[1]) if x[-1] == ']' else int(vals[1]) - 1
     return low, high
 
 
 def min_max(no):
     print(f"splitting minmax for k={no}")
-    data = pd.read_csv(f"k{no}.csv", 
+    data = pd.read_csv(f"k{no}.csv",
                        names=[f"A{i}" for i in range(20)] + ["class"],
                        index_col=False)
 
@@ -44,4 +44,4 @@ def min_max(no):
 
 #for i in range(2,13):
 #    min_max(i)
-min_max(1)
+min_max(7400)
