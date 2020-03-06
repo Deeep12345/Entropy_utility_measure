@@ -58,7 +58,14 @@ def get_cond_entr(k):
 
 
 print("k_val,cond_entropy")
-#for k in range(1,13):
-#    entr = get_cond_entr(k)
-#    print(f"{k},{entr}")
-print(get_cond_entr(7400))
+for k in range(1,51):
+    entr = get_cond_entr(k)
+    print(f"{k},{entr}")
+
+for k in range(100, 7400,250):
+    entr = get_cond_entr(k)
+    print(f"{k},{entr}")
+
+for k in [7400]:
+    entr = get_cond_entr(k)
+    print(f"{k},{entr}")

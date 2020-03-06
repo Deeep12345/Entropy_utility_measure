@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for k in {2..12}
+for k in {100..7350..250}
 do
     mv configs/mondrian${k}.xml config.xml
     ./anonymization.sh

@@ -42,6 +42,6 @@ def min_max(no):
     print("############################")
 
 
-#for i in range(2,13):
-#    min_max(i)
-min_max(7400)
+for i in range(100,7400,250):
+    min_max(i)
+
