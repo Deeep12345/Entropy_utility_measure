@@ -8,6 +8,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 
+import warnings
+warnings.simplefilter("ignore")
 
 def tune(k, X_test_orig, y_test_orig):
     k_data = pd.read_csv(f"../../anon_data/ring_mondrian/k{k}_minmaxed.csv").drop("Unnamed: 0", axis=1)
@@ -33,9 +35,7 @@ def tune(k, X_test_orig, y_test_orig):
 
 ###### Load original testing data ###########
 print("Loading testing data...")
-cols = [f"A{x}" for x in range(20)]
-cols.append("class")
-data = pd.read_csv("../../anon_data/ring_mondrian/k1_minmaxed.csv", names=cols)
+data = pd.read_csv(f"../../anon_data/ring_mondrian/k1_minmaxed.csv").drop("Unnamed: 0", axis=1)
 
 y = data["class"]
 X = data.drop("class", axis=1)
@@ -53,7 +53,7 @@ accs = {}
 for k in list(range(1,51,2)) + list(range(100,3900,250)) + [7400]:
 
     rfc, acc = tune(k, X_test_orig, y_test_orig)
-    dump(rfc, f'pickled_rfcs/{k_rfc}.joblib')
+    dump(rfc, f'pickled_rfcs/{k}_rfc.joblib')
     accs[k] = acc
     print(f"best parameters: {rfc.get_params()}")
     print(f"best accuracy: {accs[k]}")
