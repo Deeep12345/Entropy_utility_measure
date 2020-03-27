@@ -1,4 +1,4 @@
-def config_creator(k): 
+def config_creator(k):
     config = f"""<?xml version="1.0"?>
     <!-- Name attributes of 'att' nodes are not used, included just for reference.-->
     <config method='Mondrian' k='{k}'>

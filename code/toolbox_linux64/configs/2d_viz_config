@@ -1,0 +1,25 @@
+<!-- Name attributes of 'att' nodes are not used, included just for reference.-->
+<config method='Mondrian' k='3'>
+
+    <input filename='../results/ring_mondrian/2d_mondrian_viz.csv' separator=','/>
+    <!-- If left blank, separator will be set as comma by default.-->
+    <output filename='../results/ring_mondrian/2d_mondrian_viz_2anon.csv' format ='genVals'/>
+    <id> <!-- List of identifier attributes, if any, these will be excluded from the output -->
+    </id>
+
+    <qid>
+        <att index='0' name ='A0'>
+            <vgh value='[-6.375738621199575: 18.869838111837957]'>
+            </vgh>
+        </att>
+        <att index='1' name ='A1'>
+            <vgh value='[-7.493730161959119: 18.85349494509787]'>
+            </vgh>
+        </att>
+    </qid>
+
+
+    <sens>
+        <att index='2' name='class'/>
+    </sens>
+</config>
