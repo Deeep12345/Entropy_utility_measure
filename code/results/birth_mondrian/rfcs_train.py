@@ -19,7 +19,7 @@ def tune(k, X_test_orig, y_test_orig):
 
     parameters = {
         'n_estimators':list(range(10,210,10)),
-        'max_depth':[2,3,4,5,6,7],
+        'max_depth':[2,3,4,5,6,7,8,None],
         "max_features":list(range(2,10,2))
     }
 
@@ -55,6 +55,7 @@ for k in list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
     rfc, acc = tune(k, X_test_orig, y_test_orig)
     dump(rfc, f'pickled_rfcs/{k}_rfc.joblib')
     accs[k] = acc
+    print(f"####### K:{k} ##########")
     print(f"best parameters: {rfc.get_params()}")
     print(f"best accuracy: {accs[k]}")
 
