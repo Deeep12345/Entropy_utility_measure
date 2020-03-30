@@ -63,7 +63,7 @@ print("k_val,cond_entropy")
 for k in list(range(1,51)) + list(range(100, 7400,250)) + [7400]:
     entr = get_cond_entr(k)
     print(f"{k},{entr}")
-    entr_metric = entr_metric.append({'k_val':k, 'cond_entr':entr}, ignore_index=True)
+    entr_metric = entr_metric.append({'k_val':k, 'cond_entropy':entr}, ignore_index=True)
 
 entr_metric.to_csv("../../results/ring_mondrian/cond_entropy.csv")
 print("✓ CSV saved")

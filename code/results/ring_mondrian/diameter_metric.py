@@ -4,51 +4,42 @@ import pandas as pd
 import re
 import time
 
+from sklearn.metrics import pairwise_distances
+
 def load_ring_csv(k):
-    data = pd.read_csv(f'k{k}_minmaxed.csv')
+    data = pd.read_csv(f'../../anon_data/ring_mondrian/k{k}_minmaxed.csv')
     data.rename(columns={"Unnamed: 0":"index"}, inplace=True)
     data.set_index("index")
     return data
 
 
-def distance(u,v):
-    d = u == v
-    counts = d.value_counts()
-    return counts[False] if False in counts else 0
-
-
 def diam_m(k):
-    data = load_ring_csv(k)
-    cols = list(data.columns[1:-1])
-    data = data[cols]
-    print(f"\tpre-drop size of data: {len(data)}")
-    data = data.drop_duplicates()
-    print(f"\tafter drop size of data: {len(data)}")
+    anon_data = load_ring_csv(k)
+    cols = list(anon_data.columns[1:-1])
+    rel_cols = anon_data[cols]
+    rel_cols = rel_cols.drop_duplicates()
 
-    diam = 0
+    dists = pairwise_distances(rel_cols, metric="hamming", n_jobs=-1)
 
-    for x in range(len(data)):
-        for y in range(x+1, len(data)):
-            d = distance(data.iloc[x], data.iloc[y])
+    max_dist = 0
 
-            if d == len(cols):
-                return d
+    for x in range(len(dists[0])):
+        r_max = max(dists[x])
+        if r_max > max_dist:
+            max_dist = r_max
+        if max_dist == 1:
+            break
 
-            if d > diam:
-                diam = d
-        if x % 10 == 0:
-            print(f"\t({x}) Current best diam: {diam}")
-    return diam
+    return max_dist
 
 
 diam_metric = pd.DataFrame()
 print("k_val,diam_metric")
 
-for k in list(range(1,51)) + list(range(100, 7400,250)) + [7400]:
-    print(f"Finding diameter for k: {k}...")
+for k in list(range(1,51,2)) + list(range(100,3900,250)) + [7400]:
     dm = diam_m(k)
-    print(f"\t{k},{dm}")
-    diam_metric = diam_metric.append({'k_val':k, 'diam_metric':dm}, ignore_index=True)
+    print(f"{k},{dm}")
+    diam_metric = diam_metric.append({'k_val':k, 'dm':dm}, ignore_index=True)
 
-diam_metric.to_csv("../../results/ring_mondrian/diameter_metric.csv")
+diam_metric.to_csv("diameter_metric.csv")
 print("✓ CSV saved")

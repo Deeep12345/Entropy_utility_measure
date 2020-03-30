@@ -50,7 +50,7 @@ print("Training RFCs...")
 
 accs = {}
 
-for k in list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
+for k in [1] + list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
 
     rfc, acc = tune(k, X_test_orig, y_test_orig)
     dump(rfc, f'pickled_rfcs/{k}_rfc.joblib')
@@ -59,5 +59,5 @@ for k in list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
     print(f"best parameters: {rfc.get_params()}")
     print(f"best accuracy: {accs[k]}")
 
-df = pd.DataFrame.from_dict(accs, orient="index")
-df.to_csv("RFCs_accuracy.csv")
+#df = pd.DataFrame.from_dict(accs, orient="index")
+#df.to_csv("RFCs_accuracy.csv")

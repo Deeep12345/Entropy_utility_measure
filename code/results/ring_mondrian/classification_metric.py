@@ -30,11 +30,11 @@ def get_class_metric(k):
 
 c_metric = pd.DataFrame()
 
-print("k_val,c_metric")
+print("k_val,cm")
 for k in list(range(1,51)) + list(range(100, 7400,250)) + [7400]:
     cm = get_class_metric(k)
     print(f"{k},{cm}")
-    c_metric = c_metric.append({'k_val':k, 'c_metric':cm}, ignore_index=True)
+    c_metric = c_metric.append({'k_val':k, 'cm':cm}, ignore_index=True)
 
 c_metric.to_csv("../../results/ring_mondrian/classif_metric.csv")
 print("✓ CSV saved")

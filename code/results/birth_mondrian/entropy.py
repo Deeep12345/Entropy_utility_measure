@@ -4,8 +4,8 @@ import pandas as pd
 import re
 import time
 
-def load_ring_csv(k):
-    data = pd.read_csv(f'k{k}_minmaxed.csv')
+def load_csv(k):
+    data = pd.read_csv(f'../../anon_data/birth_mondrian/k{k}_minmaxed.csv')
     data.rename(columns={"Unnamed: 0":"index"}, inplace=True)
     data.set_index("index")
     return data
@@ -29,11 +29,11 @@ def conditional_probs(data, col_name, min_val, max_val):
 
 
 def get_cond_entr(k):
-    data = load_ring_csv(1)
-    anon_data = load_ring_csv(k)
+    data = load_csv(1)
+    anon_data = load_csv(k)
 
     cols = anon_data.columns[1:-1][0::2]
-    cols = cols.map(lambda x: x.split("_")[0])
+    cols = cols.map(lambda x: "_".join(x.split("_")[:-1]))
 
     tot_H = 0
 
@@ -60,10 +60,10 @@ def get_cond_entr(k):
 entr_metric = pd.DataFrame()
 
 print("k_val,cond_entropy")
-for k in list(range(1,51)) + list(range(100, 7400,250)) + [7400]:
+for k in [1] + list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
     entr = get_cond_entr(k)
     print(f"{k},{entr}")
-    entr_metric = entr_metric.append({'k_val':k, 'cond_entr':entr}, ignore_index=True)
+    entr_metric = entr_metric.append({'k_val':k, 'cond_entropy':entr}, ignore_index=True)
 
-entr_metric.to_csv("../../results/ring_mondrian/cond_entropy.csv")
+entr_metric.to_csv("cond_entropy.csv")
 print("✓ CSV saved")
