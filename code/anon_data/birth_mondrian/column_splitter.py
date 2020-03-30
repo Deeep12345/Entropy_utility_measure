@@ -42,7 +42,7 @@ def min_max(no, cols):
     print("############################")
 
 
-for i in [1]:#list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
+for i in list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
     cols = ["age","wife_ed","husb_ed","no_kids","wife_rel","wife_works",
     "husb_occupation","SOL_index","media_exp",	"class"]
     min_max(i, cols)
