@@ -13,21 +13,12 @@
    <vgh value="[1:4]"/>
    <map>
     <entry cat="1" int="3"/>
-    <entry cat="2" int="1"/>
-    <entry cat="3" int="2"/>
+    <entry cat="2" int="2"/>
+    <entry cat="3" int="1"/>
     <entry cat="4" int="4"/>
    </map>
   </att>
   <att index="1" name="wife_ed">
-   <vgh value="[1:4]"/>
-   <map>
-    <entry cat="1" int="4"/>
-    <entry cat="2" int="3"/>
-    <entry cat="3" int="1"/>
-    <entry cat="4" int="2"/>
-   </map>
-  </att>
-  <att index="2" name="husb_ed">
    <vgh value="[1:4]"/>
    <map>
     <entry cat="1" int="1"/>
@@ -36,13 +27,22 @@
     <entry cat="4" int="2"/>
    </map>
   </att>
+  <att index="2" name="husb_ed">
+   <vgh value="[1:4]"/>
+   <map>
+    <entry cat="1" int="2"/>
+    <entry cat="2" int="4"/>
+    <entry cat="3" int="3"/>
+    <entry cat="4" int="1"/>
+   </map>
+  </att>
   <att index="3" name="no_kids">
    <vgh value="[1:4]"/>
    <map>
     <entry cat="1" int="2"/>
-    <entry cat="2" int="3"/>
-    <entry cat="3" int="4"/>
-    <entry cat="4" int="1"/>
+    <entry cat="2" int="4"/>
+    <entry cat="3" int="1"/>
+    <entry cat="4" int="3"/>
    </map>
   </att>
   <att index="4" name="wife_rel">
@@ -54,18 +54,18 @@
   <att index="6" name="husb_occupation">
    <vgh value="[1:4]"/>
    <map>
-    <entry cat="1" int="3"/>
-    <entry cat="2" int="1"/>
-    <entry cat="3" int="2"/>
-    <entry cat="4" int="4"/>
+    <entry cat="1" int="1"/>
+    <entry cat="2" int="3"/>
+    <entry cat="3" int="4"/>
+    <entry cat="4" int="2"/>
    </map>
   </att>
   <att index="7" name="SOL_index">
    <vgh value="[1:4]"/>
    <map>
-    <entry cat="1" int="4"/>
-    <entry cat="2" int="3"/>
-    <entry cat="3" int="1"/>
+    <entry cat="1" int="3"/>
+    <entry cat="2" int="1"/>
+    <entry cat="3" int="4"/>
     <entry cat="4" int="2"/>
    </map>
   </att>

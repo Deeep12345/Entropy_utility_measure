@@ -152,4 +152,4 @@ def make_mondrian_config(name):
     return xml_tree
 
 for i in range(1,201):
-    make_mondrian_config(1).prettify()
+    make_mondrian_config(i).prettify()
