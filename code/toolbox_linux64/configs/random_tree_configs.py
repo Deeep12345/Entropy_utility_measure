@@ -30,8 +30,6 @@ choices = {c:len(set(values[c])) for c in data.columns[:-1]}
 
 def create_4tree():
     x = list(range(1,5))
-    odds = np.random.random()
-
     res = "<vgh value='[1:4]'>\n"
 
     part = random.choice(ps)
@@ -51,13 +49,12 @@ def create_4tree():
 
 def make_datafly_config(name):
     mappings = {}
-
     full_xml = """
     <config method='Datafly' k='2'>
     <input filename='../../datasets/birth_control/cmc_ups_4cat.csv' separator=','/>
-     <!-- If left blank, separator will be set as comma by default.-->
-    <output filename='../anon_data/test_tree_sample/k2.csv' format ='genVals'/>
-     <!-- Format options = {genVals, genValsDist, anatomy}. If left blank,
+     <!-- If left blank, separator will be set as comma by default.-->"""
+    full_xml += f"<output filename='../anon_data/birth_random_groups/datafly{name}.csv' format ='genVals'/>"
+    full_xml+= """<!-- Format options = {genVals, genValsDist, anatomy}. If left blank,
     output format will be set as genVals by default.-->
     <id> <!-- List of identifier attributes, if any, these will be excluded from the output -->
     </id>
@@ -99,5 +96,5 @@ def make_datafly_config(name):
 
     return full_xml
 
-
-make_datafly_config(1)
+for i in range(1,201):
+    make_datafly_config(i)

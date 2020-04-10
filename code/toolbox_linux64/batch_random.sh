@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for k in {1..200}
+do
+    cp configs/datafly${k}.xml config.xml
+    echo "${k} anonymization"
+    ./anonymization.sh
+    rm config.xml
+done
