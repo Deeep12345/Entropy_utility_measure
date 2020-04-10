@@ -151,5 +151,5 @@ def make_mondrian_config(name):
 
     return xml_tree
 
-#for i in range(1,201):
-print(make_mondrian_config(1).prettify())
+for i in range(1,201):
+    make_mondrian_config(1).prettify()
