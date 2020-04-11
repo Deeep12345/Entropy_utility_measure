@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config k="2" method="Datafly">
+ <input filename="../../datasets/birth_control/cmc_ups_4cat.csv" separator=","/>
+ <!-- If left blank, separator will be set as comma by default.-->
+ <output filename="../anon_data/birth_random_groups/datafly178.csv" format="genVals"/>
+ <!-- Format options = {genVals, genValsDist, anatomy}. If left blank,
+    output format will be set as genVals by default.-->
+ <id>
+  <!-- List of identifier attributes, if any, these will be excluded from the output -->
+ </id>
+ <qid>
+  <att index="0" name="age">
+   <vgh value="[1:4]">
+    <node value="[1:1]"/>
+    <node value="[2:4]"/>
+   </vgh>
+  </att>
+  <att index="1" name="wife_ed">
+   <vgh value="[1:4]">
+    <node value="[1:1]"/>
+    <node value="[2:4]"/>
+   </vgh>
+  </att>
+  <att index="2" name="husb_ed">
+   <vgh value="[1:4]">
+    <node value="[1:1]"/>
+    <node value="[2:2]"/>
+    <node value="[3:4]"/>
+   </vgh>
+  </att>
+  <att index="3" name="no_kids">
+   <vgh value="[1:4]">
+    <node value="[1:2]"/>
+    <node value="[3:4]"/>
+   </vgh>
+  </att>
+  <att index="4" name="wife_rel">
+   <vgh value="[0:1]"/>
+  </att>
+  <att index="5" name="wife_works">
+   <vgh value="[0:1]"/>
+  </att>
+  <att index="6" name="husb_occupation">
+   <vgh value="[1:4]">
+    <node value="[1:1]"/>
+    <node value="[2:4]"/>
+   </vgh>
+  </att>
+  <att index="7" name="SOL_index">
+   <vgh value="[1:4]">
+    <node value="[1:1]"/>
+    <node value="[2:4]"/>
+   </vgh>
+  </att>
+  <att index="8" name="media_exp">
+   <vgh value="[0:1]"/>
+  </att>
+ </qid>
+ <sens>
+  <att index="9" name="class"/>
+ </sens>
+ <mapping>
+  <att name="age">
+   <node mapbackto="1" used="1"/>
+   <node mapbackto="2" used="2"/>
+   <node mapbackto="3" used="3"/>
+   <node mapbackto="4" used="4"/>
+  </att>
+  <att name="wife_ed">
+   <node mapbackto="1" used="1"/>
+   <node mapbackto="2" used="2"/>
+   <node mapbackto="3" used="3"/>
+   <node mapbackto="4" used="4"/>
+  </att>
+  <att name="husb_ed">
+   <node mapbackto="1" used="1"/>
+   <node mapbackto="3" used="2"/>
+   <node mapbackto="2" used="3"/>
+   <node mapbackto="4" used="4"/>
+  </att>
+  <att name="no_kids">
+   <node mapbackto="2" used="1"/>
+   <node mapbackto="3" used="2"/>
+   <node mapbackto="1" used="3"/>
+   <node mapbackto="4" used="4"/>
+  </att>
+  <att name="husb_occupation">
+   <node mapbackto="1" used="1"/>
+   <node mapbackto="2" used="2"/>
+   <node mapbackto="3" used="3"/>
+   <node mapbackto="4" used="4"/>
+  </att>
+  <att name="SOL_index">
+   <node mapbackto="1" used="1"/>
+   <node mapbackto="2" used="2"/>
+   <node mapbackto="3" used="3"/>
+   <node mapbackto="4" used="4"/>
+  </att>
+ </mapping>
+</config>
