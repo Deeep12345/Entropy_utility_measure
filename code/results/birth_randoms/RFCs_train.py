@@ -24,7 +24,7 @@ def tune(anon_data, X_test_orig, y_test_orig):
     }
 
     rfc = RandomForestClassifier()
-    gridsearch = GridSearchCV(rfc, parameters, verbose=2, n_jobs=-1)
+    gridsearch = GridSearchCV(rfc, parameters, n_jobs=-1)
     gridsearch.fit(X_train, y_train)
 
     predicted = gridsearch.predict(X_test_orig)
@@ -41,3 +41,4 @@ def train_test(orig_data, anon_data):
         test_size=0.2, random_state=1)
 
     est, acc = tune(anon_data, X_test_orig, y_test_orig)
+    return acc

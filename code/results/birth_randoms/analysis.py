@@ -22,7 +22,7 @@ full_anon.replace(0, 1, inplace=True)
 max_H = cond_entr(orig_data, full_anon)
 
 results = {}
-for no in range(1,2):
+for no in range(1,201):
     for algo in ["datafly", "mondrian"]:
         r = {}
         anon_data = load_csv(algo, no)
@@ -32,6 +32,7 @@ for no in range(1,2):
         r["entropy"] = cond_entr(orig_data, anon_data)/max_H
         r["acc"] = train_test(orig_data, anon_data)
 
+        print(no, algo, r)
         results[(algo, no)] = r
 
 print(results)
