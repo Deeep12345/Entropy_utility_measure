@@ -1,11 +1,12 @@
 import pandas as pd
 import numpy as np
 
-from diameter_metric import diam
+from diameter_metric import diam_metric
 from classification_metric import class_metric
 from RFCs_train import train_test
-from entropy import cond_entr
-from hierarchy_metrics import precision
+from entropy import cond_entr_metric
+from hierarchy_metrics import precision_metric
+from information_loss_metrics import discern_metric, IL_metric
 
 def load_csv(algo, no, original_oh=False, bounded=False):
     if original_oh:
@@ -26,7 +27,7 @@ orig_data = load_csv("", 0, original_oh=True)
 full_anon = orig_data.copy()
 full_anon.replace(0, 1, inplace=True)
 
-max_H = cond_entr(orig_data, full_anon)
+max_H = cond_entr_metric(orig_data, full_anon)
 
 results = {}
 for no in range(1,201):
@@ -35,10 +36,12 @@ for no in range(1,201):
         anon_data = load_csv(algo, no)
         bounded_data = load_csv(algo, no, bounded=True)
 
-        r["precision"] = precision(bounded_data, algo, no)
-        r["dm"] = diam(anon_data)
+        r["precision"] = precision_metric(bounded_data, algo, no)
+        r["dm"] = diam_metric(anon_data)
         r["cm"] = class_metric(anon_data)
-        r["entropy"] = cond_entr(orig_data, anon_data)/max_H
+        r["entropy"] = cond_entr_metric(orig_data, anon_data)/max_H
+        r["discern"] = discern_metric(anon_data)
+        r["ilm"] = IL_metric(anon_data)
         r["acc"] = train_test(orig_data, anon_data)
 
 
@@ -47,4 +50,4 @@ for no in range(1,201):
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv("metrics.csv")
+df.to_csv("metrics_new.csv")

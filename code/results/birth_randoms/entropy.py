@@ -28,7 +28,7 @@ def conditional_probs(orig_data, choices, tup):
     return cond_probs
 
 
-def cond_entr(orig_data, anon_data):
+def cond_entr_metric(orig_data, anon_data):
     def_cols = ["age", "wife_ed", "husb_ed", "no_kids", "wife_rel", "wife_works", "husb_occupation", "SOL_index", "media_exp"]
     cols = anon_data.columns[:-1]
 
@@ -47,5 +47,5 @@ def cond_entr(orig_data, anon_data):
             col_H += H*no_times
 
         tot_H += col_H
-        
+
     return tot_H

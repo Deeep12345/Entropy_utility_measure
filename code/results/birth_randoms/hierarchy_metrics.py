@@ -59,7 +59,7 @@ def get_mondrian_depths(bounded_data):
     return depths
 
 
-def precision(bounded_data, algo, no):
+def precision_metric(bounded_data, algo, no):
     root = load_config(algo, no)
     if algo == "datafly":
         trees = get_datafly_trees(root)

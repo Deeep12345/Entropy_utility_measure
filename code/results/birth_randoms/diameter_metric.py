@@ -6,7 +6,7 @@ import time
 
 from sklearn.metrics import pairwise_distances
 
-def diam(anon_data):
+def diam_metric(anon_data):
     cols = list(anon_data.columns[:-1])
     rel_cols = anon_data[cols]
 
