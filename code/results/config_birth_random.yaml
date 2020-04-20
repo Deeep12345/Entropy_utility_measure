@@ -1,0 +1,19 @@
+no_instances: 200
+
+analysis_name: birth_randoms
+
+algos_used:
+  - datafly
+  - mondrian
+
+cols:
+  - age
+  - wife_ed
+  - husb_ed
+  - no_kids
+  - wife_rel
+  - wife_works
+  - husb_occupation
+  - SOL_index
+  - media_exp
+  - class

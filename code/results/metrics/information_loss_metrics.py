@@ -10,9 +10,8 @@ def discern_metric(anon_data):
 
 
 
-def IL_metric(anon_data):
+def IL_metric(anon_data, orig_cols):
     eqs = anon_data[anon_data.columns[:-1]].drop_duplicates()
-    orig_cols = set([c[:-1] for c in anon_data.columns[:-1]])
     sizes = anon_data.groupby(list(anon_data.columns[:-1]), as_index=False).size()
 
     il = 0
@@ -22,10 +21,10 @@ def IL_metric(anon_data):
 
         for c in orig_cols:
             rel_cols = list(filter(lambda col: c in col, eqs.columns))
-            dom = len(rel_cols) - 1
-            rel_cols = list(filter(lambda col: eq[col] == 1, rel_cols))
-            vals = [int(x[-1]) for x in rel_cols]
-            width = (max(vals) - min(vals)) / dom
+            dom_size = len(rel_cols) - 1
+            hot_cols = list(filter(lambda col: eq[col] == 1, rel_cols))
+            vals = [int(x[len(c):]) for x in hot_cols]
+            width = (max(vals) - min(vals)) / dom_size
             distance += width
 
         il += distance * s

@@ -17,12 +17,6 @@ def parse_range(x):
     high = int(vals[1]) if x[-1] == ']' else int(vals[1]) - 1
     return low, high
 
-
-def load_config(algo, no):
-    xml = et.parse(f"../../toolbox_linux64/configs/random_configs/{algo}{no}.xml")
-    root = xml.getroot()
-    return root
-
 def get_datafly_trees(root):
     trees = {}
     for child in root[3]:
@@ -59,18 +53,15 @@ def get_mondrian_depths(bounded_data):
     return depths
 
 
-def precision_metric(bounded_data, algo, no):
-    root = load_config(algo, no)
+def precision_metric(bounded_data, algo, no, root):
     if algo == "datafly":
         trees = get_datafly_trees(root)
         depths = get_datafly_depths(trees)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
-        print(max_depths)
     elif algo == "mondrian":
         depths =get_mondrian_depths(bounded_data)
         max_depths = {attr:(1 if attr in ["wife_works", "wife_rel", "media_exp"]
                             else 3) for attr in depths}
-        print(max_depths)
 
     prec = 0
 

@@ -14,8 +14,6 @@ def conditional_probs(orig_data, choices, tup):
     cols = orig_data[choices]
     n = {c:i for i,c in enumerate(cols.columns)}
     cols = cols.rename(n, axis=1)
-    # col = col[min_val <= col]
-    # col = col[max_val >= col]
     counts = []
     for i,val in enumerate(tup):
         if val:
@@ -28,10 +26,8 @@ def conditional_probs(orig_data, choices, tup):
     return cond_probs
 
 
-def cond_entr_metric(orig_data, anon_data):
-    def_cols = ["age", "wife_ed", "husb_ed", "no_kids", "wife_rel", "wife_works", "husb_occupation", "SOL_index", "media_exp"]
+def cond_entr_metric(orig_data, anon_data, def_cols):
     cols = anon_data.columns[:-1]
-
     tot_H = 0
 
     for c in def_cols:
