@@ -27,8 +27,7 @@ def load_csv(algo, no, original_oh=False, bounded=False):
             names=cols)
     else:
         data = pd.read_csv(f"../anon_data/{config['analysis_name']}/{algo}{no}_oh.csv")
-    if not bounded:
-        data.drop("Unnamed: 0", axis=1, inplace=True)
+
     return data
 
 def load_config(algo, no):
@@ -59,7 +58,7 @@ for no in range(1, config["no_instances"]+1):
         r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
         r["discern"] = discern_metric(anon_data)
         r["ilm"] = IL_metric(anon_data, QIs)
-        #r["acc"] = train_test(orig_data, anon_data)
+        r["acc"] = train_test(orig_data, anon_data)
 
 
         print(no, algo, r)
