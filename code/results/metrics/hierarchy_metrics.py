@@ -17,7 +17,7 @@ def parse_range(x):
     high = int(vals[1]) if x[-1] == ']' else int(vals[1]) - 1
     return low, high
 
-def get_datafly_trees(root):
+def get_datafly_depths(root):
     trees = {}
     for child in root[3]:
         name = child.attrib["name"]
@@ -25,53 +25,99 @@ def get_datafly_trees(root):
         v = et.tostring(v)
         t = xdict.parse(v)
         t = dict(t["vgh"])
+        t = dat_tree_recur(t, 1)
+        max_d = max(t.values())
+        for v in t:
+            t[v] = abs(t[v] - max_d -1)
         trees[name] = t
+
     return trees
 
-def get_datafly_depths(trees):
-    depths = {}
-    for name, t in trees.items():
-        d = {}
-        if "node" in t:
-            d[t["@value"]] = 2
-            for node in t["node"]:
-                d[node["@value"]] = 1
-        else:
-            d[t["@value"]] = 1
-        depths[name] = d
-    return depths
+def dat_tree_recur(tree, depth):
+    branches = {tree['@value']: depth}
+    if 'node' not in tree:
+        return branches
+    for branch in tree['node']:
+        res = dat_tree_recur(branch, depth+1)
+        branches.update(res)
+    return branches
 
-def get_mondrian_depths(bounded_data):
+def get_mapping(no, algo, root):
+    mapping = {}
+
+    for child in root[5]:
+        attr = child.attrib["name"]
+        m = {}
+        for v in child:
+            m[v.attrib["used"]] = v.attrib["mapbackto"]
+        mapping[attr] = m
+
+    return mapping
+
+
+def one_hot(trees, mappings):
+    oh_trees = {}
+    for attr in trees:
+        t = {}
+        if attr in mappings:
+            m = mappings[attr]
+            for val in trees[attr]:
+                lo, hi = parse_range(val)
+                oh = [1 if i >= lo-1 and i < hi else 0
+                        for i in range(len(m))]
+                mapped_oh = [0] * len(m)
+                for used in m:
+                    mapped_oh[int(m[used])-1] = oh[int(used)-1]
+                t[tuple(mapped_oh)] = trees[attr][val]
+
+        else:
+            #binary case !!!! dataset specific
+            for val in trees[attr]:
+                t[(1,1)] = 1
+
+        len_tup = len(list(t.keys())[0])
+        for i in range(len_tup):
+            oh_0 = [0] * len_tup
+            oh_0[i] = 1
+            t[tuple(oh_0)] = 0
+        oh_trees[attr] = t
+
+    return oh_trees
+
+
+
+def get_mondrian_depths(anon_data, QIs):
     depths = {}
-    for col in bounded_data.columns[:-1]:
-        vals = set(bounded_data[col])
+    for col in QIs:
+        rel_cols = list(filter(lambda c: col in c, anon_data.columns))
+        rel_cols = list(anon_data[rel_cols].itertuples(index=False, name=None))
+        vals = set(rel_cols)
         ds = {}
         for v in vals:
-            lo, hi = parse_range(v)
-            ds[v] = hi - lo
+            hots = list(filter(lambda x: x == 1, v))
+            ds[v] = len(hots) - 1
         depths[col] = ds
     return depths
 
 
-def precision_metric(bounded_data, algo, no, root):
+def precision_metric(anon_data, algo, no, root, QIs):
     if algo == "datafly":
-        trees = get_datafly_trees(root)
-        depths = get_datafly_depths(trees)
+        bound_depths = get_datafly_depths(root)
+        mappings = get_mapping(no, algo, root)
+        depths = one_hot(bound_depths, mappings)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
     elif algo == "mondrian":
-        depths =get_mondrian_depths(bounded_data)
-        max_depths = {attr:(1 if attr in ["wife_works", "wife_rel", "media_exp"]
-                            else 3) for attr in depths}
+        depths =get_mondrian_depths(anon_data, QIs)
+        max_depths = {attr:len(list(filter(lambda c: attr in c, anon_data.columns)))-1 for attr in QIs}
 
     prec = 0
-
-    for c in bounded_data.columns[:-1]:
-        counts = bounded_data[c].value_counts()
+    for c in QIs:
+        rel_cols = list(filter(lambda col: c in col, anon_data.columns))
+        counts = anon_data.groupby(rel_cols).size()
         dist = 0
         for count in counts.index:
-            if '.' not in count:
-                dist += counts[count] * depths[c][count] / max_depths[c]
-        prec += dist
+            dist += counts[count] * depths[c][count] / max_depths[c]
+            prec += dist
 
-    prec /= (len(bounded_data) * len(bounded_data.columns[:-1]))
+    prec /= (len(anon_data) * len(anon_data.columns[:-1]))
     return 1 - prec
