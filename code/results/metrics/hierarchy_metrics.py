@@ -110,14 +110,16 @@ def precision_metric(anon_data, algo, no, root, QIs):
         depths =get_mondrian_depths(anon_data, QIs)
         max_depths = {attr:len(list(filter(lambda c: attr in c, anon_data.columns)))-1 for attr in QIs}
 
+    print(algo, max_depths)
     prec = 0
     for c in QIs:
         rel_cols = list(filter(lambda col: c in col, anon_data.columns))
         counts = anon_data.groupby(rel_cols).size()
-        dist = 0
+        print(c)
+        print(depths[c])
+        print(counts)
         for count in counts.index:
-            dist += counts[count] * depths[c][count] / max_depths[c]
-            prec += dist
+            prec += counts[count] * depths[c][count] / max_depths[c]
 
-    prec /= (len(anon_data) * len(anon_data.columns[:-1]))
+    prec /= (len(anon_data) * len(QIs))
     return 1 - prec

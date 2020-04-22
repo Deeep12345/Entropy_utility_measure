@@ -7,7 +7,7 @@ import sys
 import yaml
 from tqdm import tqdm
 
-f = open(sys.argv[1])
+f = open(f"{sys.argv[1]}/config.yaml")
 config = yaml.load(f, Loader=yaml.FullLoader)
 print(f"##### Config file: {sys.argv[1]} ######")
 print(yaml.dump(config))
