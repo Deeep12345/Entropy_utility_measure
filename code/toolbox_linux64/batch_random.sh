@@ -2,8 +2,11 @@
 
 for k in {1..200}
 do
-    cp configs/ring_randoms/mondrian${k}.xml config.xml
-    echo "${k} anonymization"
+for shuff in "_shuffled" ""
+do
+    cp configs/ring_randoms/datafly${k}${shuff}.xml config.xml
+    echo "${k} ${shuff} anonymization"
     ./anonymization.sh
     rm config.xml
+done
 done

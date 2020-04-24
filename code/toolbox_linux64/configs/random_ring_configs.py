@@ -143,10 +143,11 @@ def make_mondrian_config(name, k, no_cols, no_bins):
 
 
 def make_datafly_config(name, k, no_cols, no_bins, shuffled=False):
+    is_shuffled = "_shuffled" if shuffled else ""
     full_xml = f"""
     <config method='Datafly' k='{k}'>
     <input filename='../../datasets/ring/ring_cat.csv' separator=','/>
-    <output filename='../anon_data/ring_randoms/datafly{name}.csv' format ='genVals'/>
+    <output filename='../anon_data/ring_randoms/datafly{name}{is_shuffled}.csv' format ='genVals'/>
     <id></id>
     <qid>"""
 
@@ -175,7 +176,6 @@ def make_datafly_config(name, k, no_cols, no_bins, shuffled=False):
     </config>"""
 
     xml_tree = bs(full_xml, 'xml')
-    is_shuffled = "_shuffled" if shuffled else ""
     f = open(f"ring_randoms/datafly{name}{is_shuffled}.xml", "w+")
     f.write(xml_tree.prettify())
     f.close()
