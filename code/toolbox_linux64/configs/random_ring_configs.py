@@ -100,11 +100,17 @@ def tree_to_xml(t, head=False):
     res = ""
     title = "vgh" if head else "node"
     if 'children' not in t:
-        res += (f"<{title} value='[{mi}:{ma}]'/>")
+        res += f"<{title} value='[{mi}:{ma}]'/>"
     else:
-        res += (f"<{title} value='[{mi}:{ma}]'>")
-        for c in t["children"]:
-            res += tree_to_xml(c)
+        res += f"<{title} value='[{mi}:{ma}]'>"
+        if len(t["children"]) == 1:
+            mi, ma =t["children"][0]["value"]
+            res += f"""
+            <{title} value='[{mi}:{mi +(ma-mi)/2}]'/>
+            <{title} value='[{mi + 1 +(ma-mi)/2}:{ma}]'/>"""
+        else:
+            for c in t["children"]:
+                res += tree_to_xml(c)
         res += (f"</{title}>")
     return res
 
@@ -185,7 +191,7 @@ def make_datafly_config(name, k, no_cols, no_bins, shuffled=False):
 
 no_bins = 20
 no_cols = 20
-ks = np.random.poisson(1, 200)
+ks = np.random.poisson(1, 1)
 ks = ks.astype(int) + 2
 print(pd.Series(ks).value_counts(), "\n")
 
