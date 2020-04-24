@@ -125,17 +125,15 @@ def make_mondrian_config(name, k, no_cols, no_bins):
         random.shuffle(ord)
         full_xml += "<map>"
         for j, m in enumerate(ord):
-            full_xml += f"<entry cat='{j+1}' int='{m}'/>"
+            full_xml += f"<entry cat='{j}' int='{m}'/>"
         full_xml += "</map>"
         full_xml += f"</att>"
 
     full_xml += "</qid>"
-
     full_xml += f"""
     <sens>
     <att index='{no_cols}' name='class'/>
     </sens>"""
-
     full_xml = full_xml + "</config>"
     xml_tree = bs(full_xml, 'xml')
     f = open(f"ring_randoms/mondrian{name}.xml", "w+")
