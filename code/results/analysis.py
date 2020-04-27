@@ -57,24 +57,23 @@ for no in tqdm(range(2, config["no_instances"]+1)):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        #r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        print("prec")
-        #r["dm"] = diam_metric(anon_data)
-        print("dm")
-        #r["cm"] = class_metric(anon_data)
-        print("cm")
+        r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
+        r["dm"] = diam_metric(anon_data)
+        r["cm"] = class_metric(anon_data)
         r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        print("entr")
-        #r["discern"] = discern_metric(anon_data)
-        print("discern")
-        #r["ilm"] = IL_metric(anon_data, QIs)
-        print("ilm")
-        #r["acc"] = train_test(orig_data, anon_data)
+        r["discern"] = discern_metric(anon_data)
+        r["ilm"] = IL_metric(anon_data, QIs)
+        r["acc"] = train_test(orig_data, anon_data)
 
         print(no, algo, r)
         results[(algo, no)] = r
 
+    if no % 20 == 0:
+        df = pd.DataFrame.from_dict(results, orient='index')
+        df.to_csv(f"{config['analysis_name']}/metrics.csv",
+                    index_label=["algo","no"])
+
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics_prectest.csv",
+df.to_csv(f"{config['analysis_name']}/metrics.csv",
             index_label=["algo","no"])

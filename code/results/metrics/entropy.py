@@ -6,7 +6,7 @@ import time
 
 def cell_H(orig_data, choices, tup):
     probs = conditional_probs(orig_data, choices, tup)
-    H = map(lambda p: p*np.log2(p), probs)
+    H = list(map(lambda p: p*np.log2(p) if p != 0 else 0, probs))
     return sum(H)*-1
 
 def conditional_probs(orig_data, choices, tup):
@@ -33,7 +33,7 @@ def cond_entr_metric(orig_data, anon_data, def_cols):
     for c in def_cols:
         col_H = 0
 
-        choices = list(filter(lambda x: c in x, cols))
+        choices = list(filter(lambda x: x[:len(c)] == c, cols))
         tups = anon_data.groupby(choices).size()
 
         for r in tups.index:
@@ -41,7 +41,6 @@ def cond_entr_metric(orig_data, anon_data, def_cols):
             no_times = tups[r]
             H = cell_H(orig_data, choices, tup)
             col_H += H*no_times
-
         tot_H += col_H
 
     return tot_H
