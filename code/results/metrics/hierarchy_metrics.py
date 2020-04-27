@@ -56,8 +56,6 @@ def get_mapping(no, algo, root):
 
 
 def one_hot(trees, mappings):
-    print(trees["16th"])
-    print(mappings["16th"])
     oh_trees = {}
     for attr in trees:
         t = {}
