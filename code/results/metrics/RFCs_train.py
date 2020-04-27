@@ -18,7 +18,7 @@ def tune(anon_data, X_test_orig, y_test_orig):
     y_train = y.drop(y_test_orig.index, axis=0)
 
     parameters = {
-        'n_estimators':list(range(10,210,10)),
+        'n_estimators':list(range(100,500,25)),
         'max_depth':[2,3,4,5,6,7,8,None],
         "max_features":list(range(2,10,2))
     }

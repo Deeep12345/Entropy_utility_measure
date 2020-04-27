@@ -66,7 +66,7 @@ def one_hot(trees, mappings):
                     for i in range(len(m))]
             mapped_oh = [0] * len(m)
             for used in m:
-                mapped_oh[int(m[used])-1] = oh[int(used)-1]
+                mapped_oh[int(m[used])] = oh[int(used)]
             t[tuple(mapped_oh)] = trees[attr][val]
 
         len_tup = len(list(t.keys())[0])
@@ -101,6 +101,7 @@ def precision_metric(anon_data, algo, no, root, QIs):
             mappings = {c:{str(i):str(i) for i in range(20)} for c in QIs}
         else:
             mappings = get_mapping(no, algo, root)
+        print(mappings)
         depths = one_hot(bound_depths, mappings)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
     elif algo == "mondrian":
@@ -113,9 +114,6 @@ def precision_metric(anon_data, algo, no, root, QIs):
     for c in QIs:
         rel_cols = list(filter(lambda col: c == col[:len(c)], anon_data.columns))
         counts = anon_data.groupby(rel_cols).size()
-        print(c)
-        print(depths[c])
-        print(counts)
         for count in counts.index:
             prec += counts[count] * depths[c][count] / max_depths[c]
 

@@ -24,18 +24,19 @@ def load_csv(algo, no, original_oh=True):
     if original_oh:
         return pd.read_csv(f"../anon_data/{config['analysis_name']}/original_oh.csv")
 
-    f = f"../anon_data/{config['analysis_name']}/{algo}{no}_oh"
-    shuff = "_shuffled.csv" if algo == "datafly_shuffled" else ".csv"
-    fp = f + shuff
-    return pd.read_csv(fp)
+    if algo == "datafly_shuffled":
+        f = f"../anon_data/{config['analysis_name']}/datafly{no}_oh_shuffled.csv"
+    else:
+        f = f"../anon_data/{config['analysis_name']}/{algo}{no}_oh.csv"
+    return pd.read_csv(f)
 
 
 def load_config(algo, no):
-    f = f"../toolbox_linux64/configs/{config['analysis_name']}/{algo}{no}"
-    shuff = "_shuffled.xml" if algo == "datafly_shuffled" else ".xml"
-    fp = f + shuff
-    print(algo, fp)
-    xml = et.parse(fp)
+    if algo == "datafly_shuffled":
+        f = f"../toolbox_linux64/configs/{config['analysis_name']}/datafly{no}_shuffled.xml"
+    else:
+        f = f"../toolbox_linux64/configs/{config['analysis_name']}/{algo}{no}.xml"
+    xml = et.parse(f)
     root = xml.getroot()
     return root
 
@@ -52,6 +53,7 @@ for no in tqdm(range(1, config["no_instances"]+1)):
 
     for algo in config["algos_used"]:
         r = {}
+        print(no, algo)
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
@@ -61,8 +63,7 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
         r["discern"] = discern_metric(anon_data)
         r["ilm"] = IL_metric(anon_data, QIs)
-        print("did metrics successfuly")
-        r["acc"] = train_test(orig_data, anon_data)
+        #r["acc"] = train_test(orig_data, anon_data)
 
         print(no, algo, r)
         results[(algo, no)] = r
