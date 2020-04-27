@@ -1,0 +1,31 @@
+no_instances: 200
+
+analysis_name: ring_randoms
+
+algos_used:
+  - datafly
+  - datafly_shuffled
+  - mondrian
+
+cols:
+  - 0th
+  - 1th
+  - 2th
+  - 3th
+  - 4th
+  - 5th
+  - 6th
+  - 7th
+  - 8th
+  - 9th
+  - 10th
+  - 11th
+  - 12th
+  - 13th
+  - 14th
+  - 15th
+  - 16th
+  - 17th
+  - 18th
+  - 19th
+  - class

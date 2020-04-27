@@ -20,7 +20,7 @@ def IL_metric(anon_data, orig_cols):
         distance = 0
 
         for c in orig_cols:
-            rel_cols = list(filter(lambda col: c in col, eqs.columns))
+            rel_cols = list(filter(lambda col: c == col[:len(c)], eqs.columns))
             dom_size = len(rel_cols) - 1
             hot_cols = list(filter(lambda col: eq[col] == 1, rel_cols))
             vals = [int(x[len(c):]) for x in hot_cols]

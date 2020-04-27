@@ -42,14 +42,14 @@ def dat_tree_recur(tree, depth):
         branches.update(res)
     return branches
 
+
 def get_mapping(no, algo, root):
     mapping = {}
-
-    for child in root[5]:
+    for child in root[3]:
         attr = child.attrib["name"]
         m = {}
-        for v in child:
-            m[v.attrib["used"]] = v.attrib["mapbackto"]
+        for v in child[1]:
+            m[v.attrib["int"]] = v.attrib["cat"]
         mapping[attr] = m
 
     return mapping
@@ -59,21 +59,15 @@ def one_hot(trees, mappings):
     oh_trees = {}
     for attr in trees:
         t = {}
-        if attr in mappings:
-            m = mappings[attr]
-            for val in trees[attr]:
-                lo, hi = parse_range(val)
-                oh = [1 if i >= lo-1 and i < hi else 0
-                        for i in range(len(m))]
-                mapped_oh = [0] * len(m)
-                for used in m:
-                    mapped_oh[int(m[used])-1] = oh[int(used)-1]
-                t[tuple(mapped_oh)] = trees[attr][val]
-
-        else:
-            #binary case !!!! dataset specific
-            for val in trees[attr]:
-                t[(1,1)] = 1
+        m = mappings[attr]
+        for val in trees[attr]:
+            lo, hi = parse_range(val)
+            oh = [1 if i >= lo and i <= hi else 0
+                    for i in range(len(m))]
+            mapped_oh = [0] * len(m)
+            for used in m:
+                mapped_oh[int(m[used])-1] = oh[int(used)-1]
+            t[tuple(mapped_oh)] = trees[attr][val]
 
         len_tup = len(list(t.keys())[0])
         for i in range(len_tup):
@@ -101,19 +95,23 @@ def get_mondrian_depths(anon_data, QIs):
 
 
 def precision_metric(anon_data, algo, no, root, QIs):
-    if algo == "datafly":
+    if "datafly" in algo:
         bound_depths = get_datafly_depths(root)
-        mappings = get_mapping(no, algo, root)
+        if algo == "datafly":
+            mappings = {c:{str(i):str(i) for i in range(20)} for c in QIs}
+        else:
+            mappings = get_mapping(no, algo, root)
         depths = one_hot(bound_depths, mappings)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
     elif algo == "mondrian":
         depths =get_mondrian_depths(anon_data, QIs)
         max_depths = {attr:len(list(filter(lambda c: attr in c, anon_data.columns)))-1 for attr in QIs}
 
+
     print(algo, max_depths)
     prec = 0
     for c in QIs:
-        rel_cols = list(filter(lambda col: c in col, anon_data.columns))
+        rel_cols = list(filter(lambda col: c == col[:len(c)], anon_data.columns))
         counts = anon_data.groupby(rel_cols).size()
         print(c)
         print(depths[c])
