@@ -106,8 +106,8 @@ def tree_to_xml(t, head=False):
         if len(t["children"]) == 1:
             mi, ma =t["children"][0]["value"]
             res += f"""
-            <{title} value='[{mi}:{mi +(ma-mi)/2}]'/>
-            <{title} value='[{mi + 1 +(ma-mi)/2}:{ma}]'/>"""
+            <{title} value='[{mi}:{mi +(ma-mi)//2}]'/>
+            <{title} value='[{mi + 1 +(ma-mi)//2}:{ma}]'/>"""
         else:
             for c in t["children"]:
                 res += tree_to_xml(c)
@@ -174,10 +174,10 @@ def make_datafly_config(name, k, no_cols, no_bins, shuffled=False):
             full_xml += "</map>"
         full_xml += "</att>"
 
-    full_xml += """
+    full_xml += f"""
     </qid>
     <sens>
-    <att index='9' name='class'/>
+    <att index='20' name='class'/>
     </sens>
     </config>"""
 
@@ -191,7 +191,7 @@ def make_datafly_config(name, k, no_cols, no_bins, shuffled=False):
 
 no_bins = 20
 no_cols = 20
-ks = np.random.poisson(1, 1)
+ks = np.random.poisson(1, 200)
 ks = ks.astype(int) + 2
 print(pd.Series(ks).value_counts(), "\n")
 
