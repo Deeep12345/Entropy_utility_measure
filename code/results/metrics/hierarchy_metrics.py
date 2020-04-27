@@ -56,18 +56,28 @@ def get_mapping(no, algo, root):
 
 
 def one_hot(trees, mappings):
+    print(trees["16th"])
+    print(mappings["16th"])
     oh_trees = {}
     for attr in trees:
         t = {}
         m = mappings[attr]
         for val in trees[attr]:
-            lo, hi = parse_range(val)
-            oh = [1 if i >= lo and i <= hi else 0
-                    for i in range(len(m))]
-            mapped_oh = [0] * len(m)
-            for used in m:
-                mapped_oh[int(m[used])] = oh[int(used)]
-            t[tuple(mapped_oh)] = trees[attr][val]
+            # lo, hi = parse_range(val)
+            # oh = [1 if i >= lo and i <= hi else 0
+            #         for i in range(len(m))]
+            # mapped_oh = [0] * len(m)
+            # for used in m:
+            #     mapped_oh[int(m[used])] = oh[int(used)]
+            # t[tuple(mapped_oh)] = trees[attr][val]
+
+
+            mi, ma = parse_range(val)
+            oh = [0] * len(m)
+            for i in range(mi,ma+1):
+                v = int(m[str(i)])
+                oh[v] = 1
+            t[tuple(oh)] = trees[attr][val]
 
         len_tup = len(list(t.keys())[0])
         for i in range(len_tup):
@@ -83,7 +93,7 @@ def one_hot(trees, mappings):
 def get_mondrian_depths(anon_data, QIs):
     depths = {}
     for col in QIs:
-        rel_cols = list(filter(lambda c: col in c, anon_data.columns))
+        rel_cols = list(filter(lambda c: c[:len(col)] == col, anon_data.columns))
         rel_cols = list(anon_data[rel_cols].itertuples(index=False, name=None))
         vals = set(rel_cols)
         ds = {}
@@ -101,15 +111,12 @@ def precision_metric(anon_data, algo, no, root, QIs):
             mappings = {c:{str(i):str(i) for i in range(20)} for c in QIs}
         else:
             mappings = get_mapping(no, algo, root)
-        print(mappings)
         depths = one_hot(bound_depths, mappings)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
     elif algo == "mondrian":
         depths =get_mondrian_depths(anon_data, QIs)
         max_depths = {attr:len(list(filter(lambda c: attr in c, anon_data.columns)))-1 for attr in QIs}
 
-
-    print(algo, max_depths)
     prec = 0
     for c in QIs:
         rel_cols = list(filter(lambda col: c == col[:len(c)], anon_data.columns))

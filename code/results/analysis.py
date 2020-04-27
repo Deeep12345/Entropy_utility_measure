@@ -49,7 +49,7 @@ full_anon.replace(0, 1, inplace=True)
 max_H = cond_entr_metric(orig_data, full_anon, QIs)
 
 results = {}
-for no in tqdm(range(1, config["no_instances"]+1)):
+for no in tqdm(range(2, config["no_instances"]+1)):
 
     for algo in config["algos_used"]:
         r = {}
@@ -63,7 +63,7 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
         r["discern"] = discern_metric(anon_data)
         r["ilm"] = IL_metric(anon_data, QIs)
-        #r["acc"] = train_test(orig_data, anon_data)
+        r["acc"] = train_test(orig_data, anon_data)
 
         print(no, algo, r)
         results[(algo, no)] = r
