@@ -96,7 +96,7 @@ def tree_to_xml(t, head=False):
     return res
 
 
-def make_mondrian_config(name, k, no_bins):
+def make_mondrian_config(name, k, no_bins, vals):
     mappings = {}
     full_xml = f"""
     <config method='Mondrian' k='{k}'>
@@ -114,7 +114,8 @@ def make_mondrian_config(name, k, no_bins):
         random.shuffle(ord)
         full_xml += "<map>"
         for j, m in enumerate(ord):
-            full_xml += f"<entry cat='{j}' int='{m}'/>"
+            if j in vals[i]:
+                full_xml += f"<entry cat='{j}' int='{m}'/>"
         full_xml += "</map></att>"
 
     full_xml += f"""
@@ -129,7 +130,7 @@ def make_mondrian_config(name, k, no_bins):
     return xml_tree
 
 
-def make_datafly_config(name, k, no_bins, shuffled=False):
+def make_datafly_config(name, k, no_bins, vals, shuffled=False):
     is_shuffled = "_shuffled" if shuffled else ""
     full_xml = f"""
     <config method='Datafly' k='{k}'>
@@ -151,7 +152,8 @@ def make_datafly_config(name, k, no_bins, shuffled=False):
             random.shuffle(ord)
             full_xml += "<map>"
             for j, m in enumerate(ord):
-                full_xml += f"<entry cat='{j}' int='{m}'/>"
+                if j in vals[i]:
+                    full_xml += f"<entry cat='{j}' int='{m}'/>"
             full_xml += "</map>"
         full_xml += "</att>"
 
@@ -175,7 +177,12 @@ ks = ks.astype(int) + 2
 print(pd.Series(ks).value_counts(), "\n")
 
 no_bins = [20, 9, 16, 7, 15, 6, 5, 2, 20, 20, 20, 20]
+df = pd.read_csv("../../../datasets/adult/adult_cat.csv")
+vals = []
+for c in df.columns[:-1]:
+    s = set(df[c])
+    vals.append(c)
 
 for i, k in enumerate(ks):
-    make_datafly_config(i+1, k, no_bins, shuffled=True)
-    make_mondrian_config(i+1, k, no_bins)
+    make_datafly_config(i+1, k, no_bins, vals, shuffled=True)
+    make_mondrian_config(i+1, k, no_bins, vals)
