@@ -13,6 +13,9 @@ print(f"##### Config file: {sys.argv[1]} ######")
 print(yaml.dump(config))
 sys.path.append(config["analysis_name"])
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+
 from metrics.diameter_metric import diam_metric
 from metrics.classification_metric import class_metric
 from metrics.entropy import cond_entr_metric
@@ -49,7 +52,7 @@ full_anon.replace(0, 1, inplace=True)
 max_H = cond_entr_metric(orig_data, full_anon, QIs)
 
 results = {}
-for no in tqdm(range(2, config["no_instances"]+1)):
+for no in range(2, config["no_instances"]+1):
 
     for algo in config["algos_used"]:
         r = {}
@@ -57,23 +60,26 @@ for no in tqdm(range(2, config["no_instances"]+1)):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        r["dm"] = diam_metric(anon_data)
-        r["cm"] = class_metric(anon_data)
-        r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        r["discern"] = discern_metric(anon_data)
-        r["ilm"] = IL_metric(anon_data, QIs)
-        r["acc"] = train_test(orig_data, anon_data)
+        # r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
+        # r["dm"] = diam_metric(anon_data)
+        # r["cm"] = class_metric(anon_data)
+        # r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
+        # r["discern"] = discern_metric(anon_data)
+        # r["ilm"] = IL_metric(anon_data, QIs)
+        model = LogisticRegression(random_state=1)
+        roc, acc = train_test(orig_data, anon_data, model)
+        r["lr_acc"] = acc
+        r["auroc"] = roc
 
         print(no, algo, r)
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics.csv",
+        df.to_csv(f"{config['analysis_name']}/accs_lr.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics.csv",
+df.to_csv(f"{config['analysis_name']}/accs_lr.csv",
             index_label=["algo","no"])
