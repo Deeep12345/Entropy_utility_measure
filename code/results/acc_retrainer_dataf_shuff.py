@@ -40,29 +40,16 @@ def load_config(algo, no):
     root = xml.getroot()
     return root
 
-QIs = config["cols"][:-1]
-
 orig_data = load_csv(0,0)
-full_anon = orig_data.copy()
-full_anon.replace(0, 1, inplace=True)
-
-max_H = cond_entr_metric(orig_data, full_anon, QIs)
 
 results = {}
 for no in tqdm(range(2, config["no_instances"]+1)):
 
-    for algo in config["algos_used"]:
+    for algo in ["datafly_shuffled"]:
         r = {}
-        print(no, algo)
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        r["dm"] = diam_metric(anon_data)
-        r["cm"] = class_metric(anon_data)
-        r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        r["discern"] = discern_metric(anon_data)
-        r["ilm"] = IL_metric(anon_data, QIs)
         r["acc"] = train_test(orig_data, anon_data)
 
         print(no, algo, r)
@@ -70,10 +57,10 @@ for no in tqdm(range(2, config["no_instances"]+1)):
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics.csv",
+        df.to_csv(f"{config['analysis_name']}/acc_dataf_shuff.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics.csv",
+df.to_csv(f"{config['analysis_name']}/acc_dataf_shuff.csv",
             index_label=["algo","no"])
