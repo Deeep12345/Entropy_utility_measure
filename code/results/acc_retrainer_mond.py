@@ -43,7 +43,7 @@ def load_config(algo, no):
 orig_data = load_csv(0,0)
 results = {}
 
-for no in tqdm(range(2, config["no_instances"]+1)):
+for no in range(2, config["no_instances"]+1):
 
     for algo in ["mondrian"]:
         r = {}
