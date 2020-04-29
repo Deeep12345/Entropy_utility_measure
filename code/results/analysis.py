@@ -21,7 +21,7 @@ from metrics.classification_metric import class_metric
 from metrics.entropy import cond_entr_metric
 from metrics.hierarchy_metrics import precision_metric
 from metrics.information_loss_metrics import discern_metric, IL_metric
-from metrics.RFCs_train import train_test
+from metrics.ML_train import train_test
 
 def load_csv(algo, no, original_oh=True):
     if original_oh:
@@ -60,26 +60,23 @@ for no in range(2, config["no_instances"]+1):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        # r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        # r["dm"] = diam_metric(anon_data)
-        # r["cm"] = class_metric(anon_data)
-        # r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        # r["discern"] = discern_metric(anon_data)
-        # r["ilm"] = IL_metric(anon_data, QIs)
-        model = LogisticRegression(random_state=1)
-        roc, acc = train_test(orig_data, anon_data, model)
-        r["lr_acc"] = acc
-        r["auroc"] = roc
+        r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
+        r["dm"] = diam_metric(anon_data)
+        r["cm"] = class_metric(anon_data)
+        r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
+        r["discern"] = discern_metric(anon_data)
+        r["ilm"] = IL_metric(anon_data, QIs)
+        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
 
         print(no, algo, r)
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/accs_lr.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/accs_lr.csv",
+df.to_csv(f"{config['analysis_name']}/metrics.csv",
             index_label=["algo","no"])
