@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<config k="6" method="Mondrian">
- <input filename="../../datasets/adult/adult_cat.csv" separator=","/>
+<config k="5" method="Mondrian">
+ <input filename="../../datasets/adult/adult_cat_mapped.csv" separator=","/>
  <output filename="../anon_data/adult_randoms/mondrian167.csv" format="genVals"/>
  <id/>
  <qid>
   <att index="0" name="0th">
    <map>
-    <entry cat="0" int="16"/>
-    <entry cat="1" int="3"/>
-    <entry cat="2" int="15"/>
-    <entry cat="3" int="0"/>
-    <entry cat="4" int="17"/>
-    <entry cat="5" int="7"/>
-    <entry cat="6" int="14"/>
-    <entry cat="7" int="13"/>
-    <entry cat="8" int="8"/>
-    <entry cat="9" int="6"/>
-    <entry cat="10" int="4"/>
-    <entry cat="11" int="5"/>
-    <entry cat="12" int="18"/>
-    <entry cat="13" int="2"/>
-    <entry cat="14" int="9"/>
-    <entry cat="15" int="19"/>
-    <entry cat="16" int="11"/>
-    <entry cat="17" int="1"/>
-    <entry cat="18" int="10"/>
-    <entry cat="19" int="12"/>
+    <entry cat="0" int="3"/>
+    <entry cat="1" int="9"/>
+    <entry cat="2" int="5"/>
+    <entry cat="3" int="2"/>
+    <entry cat="4" int="4"/>
+    <entry cat="5" int="19"/>
+    <entry cat="6" int="10"/>
+    <entry cat="7" int="1"/>
+    <entry cat="8" int="17"/>
+    <entry cat="9" int="0"/>
+    <entry cat="10" int="6"/>
+    <entry cat="11" int="12"/>
+    <entry cat="12" int="15"/>
+    <entry cat="13" int="13"/>
+    <entry cat="14" int="11"/>
+    <entry cat="15" int="16"/>
+    <entry cat="16" int="7"/>
+    <entry cat="17" int="14"/>
+    <entry cat="18" int="18"/>
+    <entry cat="19" int="8"/>
    </map>
    <vgh value="[0:19]"/>
   </att>
   <att index="1" name="1th">
    <map>
-    <entry cat="0" int="2"/>
-    <entry cat="1" int="0"/>
-    <entry cat="2" int="3"/>
-    <entry cat="3" int="5"/>
-    <entry cat="4" int="1"/>
-    <entry cat="5" int="6"/>
-    <entry cat="6" int="4"/>
+    <entry cat="0" int="4"/>
+    <entry cat="1" int="2"/>
+    <entry cat="2" int="6"/>
+    <entry cat="3" int="0"/>
+    <entry cat="4" int="3"/>
+    <entry cat="5" int="5"/>
+    <entry cat="6" int="1"/>
    </map>
    <vgh value="[0:6]"/>
   </att>
   <att index="2" name="2th">
    <map>
-    <entry cat="0" int="8"/>
-    <entry cat="1" int="4"/>
-    <entry cat="2" int="13"/>
+    <entry cat="0" int="0"/>
+    <entry cat="1" int="13"/>
+    <entry cat="2" int="12"/>
     <entry cat="3" int="3"/>
-    <entry cat="4" int="9"/>
+    <entry cat="4" int="5"/>
     <entry cat="5" int="7"/>
-    <entry cat="6" int="10"/>
-    <entry cat="7" int="14"/>
-    <entry cat="8" int="5"/>
-    <entry cat="9" int="0"/>
-    <entry cat="10" int="12"/>
-    <entry cat="11" int="11"/>
-    <entry cat="12" int="1"/>
-    <entry cat="13" int="15"/>
-    <entry cat="14" int="6"/>
-    <entry cat="15" int="2"/>
+    <entry cat="6" int="14"/>
+    <entry cat="7" int="1"/>
+    <entry cat="8" int="8"/>
+    <entry cat="9" int="4"/>
+    <entry cat="10" int="2"/>
+    <entry cat="11" int="15"/>
+    <entry cat="12" int="9"/>
+    <entry cat="13" int="6"/>
+    <entry cat="14" int="10"/>
+    <entry cat="15" int="11"/>
    </map>
    <vgh value="[0:15]"/>
   </att>
   <att index="3" name="3th">
    <map>
-    <entry cat="0" int="0"/>
-    <entry cat="1" int="6"/>
-    <entry cat="2" int="1"/>
-    <entry cat="3" int="4"/>
-    <entry cat="4" int="3"/>
-    <entry cat="5" int="5"/>
-    <entry cat="6" int="2"/>
+    <entry cat="0" int="2"/>
+    <entry cat="1" int="5"/>
+    <entry cat="2" int="6"/>
+    <entry cat="3" int="3"/>
+    <entry cat="4" int="0"/>
+    <entry cat="5" int="1"/>
+    <entry cat="6" int="4"/>
    </map>
    <vgh value="[0:6]"/>
   </att>
   <att index="4" name="4th">
    <map>
-    <entry cat="0" int="0"/>
-    <entry cat="1" int="13"/>
-    <entry cat="2" int="7"/>
-    <entry cat="3" int="4"/>
-    <entry cat="4" int="9"/>
-    <entry cat="5" int="5"/>
-    <entry cat="6" int="1"/>
-    <entry cat="7" int="8"/>
-    <entry cat="8" int="11"/>
-    <entry cat="9" int="10"/>
-    <entry cat="10" int="6"/>
-    <entry cat="11" int="12"/>
-    <entry cat="12" int="2"/>
-    <entry cat="13" int="3"/>
+    <entry cat="0" int="7"/>
+    <entry cat="1" int="3"/>
+    <entry cat="2" int="13"/>
+    <entry cat="3" int="9"/>
+    <entry cat="4" int="12"/>
+    <entry cat="5" int="6"/>
+    <entry cat="6" int="10"/>
+    <entry cat="7" int="0"/>
+    <entry cat="8" int="1"/>
+    <entry cat="9" int="11"/>
+    <entry cat="10" int="4"/>
+    <entry cat="11" int="8"/>
+    <entry cat="12" int="5"/>
+    <entry cat="13" int="2"/>
    </map>
    <vgh value="[0:13]"/>
   </att>
   <att index="5" name="5th">
    <map>
-    <entry cat="0" int="5"/>
-    <entry cat="1" int="1"/>
+    <entry cat="0" int="1"/>
+    <entry cat="1" int="5"/>
     <entry cat="2" int="0"/>
-    <entry cat="3" int="3"/>
-    <entry cat="4" int="4"/>
-    <entry cat="5" int="2"/>
+    <entry cat="3" int="4"/>
+    <entry cat="4" int="2"/>
+    <entry cat="5" int="3"/>
    </map>
    <vgh value="[0:5]"/>
   </att>
   <att index="6" name="6th">
    <map>
-    <entry cat="0" int="3"/>
-    <entry cat="1" int="2"/>
+    <entry cat="0" int="1"/>
+    <entry cat="1" int="4"/>
     <entry cat="2" int="0"/>
-    <entry cat="3" int="1"/>
-    <entry cat="4" int="4"/>
+    <entry cat="3" int="3"/>
+    <entry cat="4" int="2"/>
    </map>
    <vgh value="[0:4]"/>
   </att>
@@ -123,108 +123,108 @@
   </att>
   <att index="8" name="8th">
    <map>
-    <entry cat="0" int="4"/>
-    <entry cat="1" int="8"/>
-    <entry cat="2" int="7"/>
+    <entry cat="0" int="8"/>
+    <entry cat="1" int="3"/>
+    <entry cat="2" int="4"/>
     <entry cat="3" int="6"/>
-    <entry cat="4" int="0"/>
-    <entry cat="5" int="3"/>
-    <entry cat="6" int="2"/>
-    <entry cat="8" int="5"/>
-    <entry cat="19" int="1"/>
+    <entry cat="4" int="2"/>
+    <entry cat="5" int="5"/>
+    <entry cat="6" int="0"/>
+    <entry cat="7" int="1"/>
+    <entry cat="8" int="7"/>
    </map>
    <vgh value="[0:8]"/>
   </att>
   <att index="9" name="9th">
    <map>
-    <entry cat="0" int="0"/>
-    <entry cat="1" int="6"/>
-    <entry cat="2" int="8"/>
-    <entry cat="3" int="4"/>
+    <entry cat="0" int="6"/>
+    <entry cat="1" int="0"/>
+    <entry cat="2" int="7"/>
+    <entry cat="3" int="8"/>
     <entry cat="4" int="12"/>
-    <entry cat="5" int="13"/>
-    <entry cat="6" int="7"/>
-    <entry cat="7" int="16"/>
-    <entry cat="8" int="10"/>
+    <entry cat="5" int="4"/>
+    <entry cat="6" int="14"/>
+    <entry cat="7" int="5"/>
+    <entry cat="8" int="16"/>
     <entry cat="9" int="1"/>
     <entry cat="10" int="15"/>
-    <entry cat="11" int="9"/>
-    <entry cat="12" int="2"/>
-    <entry cat="13" int="11"/>
-    <entry cat="16" int="14"/>
-    <entry cat="17" int="5"/>
-    <entry cat="19" int="3"/>
+    <entry cat="11" int="11"/>
+    <entry cat="12" int="13"/>
+    <entry cat="13" int="10"/>
+    <entry cat="14" int="9"/>
+    <entry cat="15" int="2"/>
+    <entry cat="16" int="3"/>
    </map>
    <vgh value="[0:16]"/>
   </att>
   <att index="10" name="10th">
    <map>
-    <entry cat="0" int="4"/>
-    <entry cat="1" int="2"/>
-    <entry cat="2" int="11"/>
-    <entry cat="3" int="16"/>
-    <entry cat="4" int="8"/>
+    <entry cat="0" int="15"/>
+    <entry cat="1" int="6"/>
+    <entry cat="2" int="14"/>
+    <entry cat="3" int="17"/>
+    <entry cat="4" int="9"/>
     <entry cat="5" int="10"/>
-    <entry cat="6" int="15"/>
+    <entry cat="6" int="7"/>
     <entry cat="7" int="18"/>
-    <entry cat="8" int="14"/>
-    <entry cat="9" int="5"/>
-    <entry cat="10" int="0"/>
-    <entry cat="11" int="6"/>
-    <entry cat="12" int="3"/>
-    <entry cat="13" int="13"/>
-    <entry cat="14" int="9"/>
-    <entry cat="15" int="19"/>
-    <entry cat="16" int="12"/>
-    <entry cat="17" int="1"/>
-    <entry cat="18" int="7"/>
-    <entry cat="19" int="17"/>
+    <entry cat="8" int="2"/>
+    <entry cat="9" int="8"/>
+    <entry cat="10" int="1"/>
+    <entry cat="11" int="13"/>
+    <entry cat="12" int="12"/>
+    <entry cat="13" int="3"/>
+    <entry cat="14" int="0"/>
+    <entry cat="15" int="11"/>
+    <entry cat="16" int="4"/>
+    <entry cat="17" int="16"/>
+    <entry cat="18" int="5"/>
+    <entry cat="19" int="19"/>
    </map>
    <vgh value="[0:19]"/>
   </att>
   <att index="11" name="11th">
    <map>
     <entry cat="0" int="38"/>
-    <entry cat="1" int="14"/>
-    <entry cat="2" int="37"/>
-    <entry cat="3" int="7"/>
-    <entry cat="4" int="21"/>
-    <entry cat="5" int="31"/>
-    <entry cat="6" int="24"/>
-    <entry cat="7" int="3"/>
-    <entry cat="8" int="34"/>
-    <entry cat="9" int="1"/>
-    <entry cat="10" int="0"/>
-    <entry cat="11" int="17"/>
-    <entry cat="12" int="30"/>
-    <entry cat="13" int="15"/>
-    <entry cat="14" int="2"/>
-    <entry cat="15" int="12"/>
-    <entry cat="16" int="10"/>
-    <entry cat="17" int="35"/>
-    <entry cat="18" int="36"/>
-    <entry cat="19" int="22"/>
-    <entry cat="20" int="27"/>
-    <entry cat="21" int="28"/>
-    <entry cat="22" int="20"/>
-    <entry cat="23" int="39"/>
-    <entry cat="24" int="26"/>
-    <entry cat="25" int="29"/>
-    <entry cat="26" int="8"/>
-    <entry cat="27" int="5"/>
-    <entry cat="28" int="11"/>
-    <entry cat="29" int="23"/>
+    <entry cat="1" int="7"/>
+    <entry cat="2" int="16"/>
+    <entry cat="3" int="18"/>
+    <entry cat="4" int="11"/>
+    <entry cat="5" int="6"/>
+    <entry cat="6" int="8"/>
+    <entry cat="7" int="29"/>
+    <entry cat="8" int="24"/>
+    <entry cat="9" int="33"/>
+    <entry cat="10" int="17"/>
+    <entry cat="11" int="15"/>
+    <entry cat="12" int="25"/>
+    <entry cat="13" int="27"/>
+    <entry cat="14" int="36"/>
+    <entry cat="15" int="14"/>
+    <entry cat="16" int="12"/>
+    <entry cat="17" int="30"/>
+    <entry cat="18" int="23"/>
+    <entry cat="19" int="4"/>
+    <entry cat="20" int="21"/>
+    <entry cat="21" int="10"/>
+    <entry cat="22" int="22"/>
+    <entry cat="23" int="19"/>
+    <entry cat="24" int="0"/>
+    <entry cat="25" int="20"/>
+    <entry cat="26" int="9"/>
+    <entry cat="27" int="34"/>
+    <entry cat="28" int="39"/>
+    <entry cat="29" int="31"/>
     <entry cat="30" int="32"/>
-    <entry cat="31" int="4"/>
-    <entry cat="32" int="25"/>
-    <entry cat="33" int="33"/>
-    <entry cat="34" int="19"/>
-    <entry cat="35" int="13"/>
-    <entry cat="36" int="40"/>
-    <entry cat="37" int="16"/>
-    <entry cat="38" int="18"/>
-    <entry cat="39" int="6"/>
-    <entry cat="40" int="9"/>
+    <entry cat="31" int="40"/>
+    <entry cat="32" int="26"/>
+    <entry cat="33" int="2"/>
+    <entry cat="34" int="1"/>
+    <entry cat="35" int="3"/>
+    <entry cat="36" int="37"/>
+    <entry cat="37" int="28"/>
+    <entry cat="38" int="5"/>
+    <entry cat="39" int="35"/>
+    <entry cat="40" int="13"/>
    </map>
    <vgh value="[0:40]"/>
   </att>

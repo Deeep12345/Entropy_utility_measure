@@ -100,7 +100,7 @@ def make_mondrian_config(name, k, vals):
     mappings = {}
     full_xml = f"""
     <config method='Mondrian' k='{k}'>
-    <input filename='../../datasets/adult/adult_cat.csv' separator=','/>
+    <input filename='../../datasets/adult/adult_cat_mapped.csv' separator=','/>
     <output filename='../anon_data/adult_randoms/mondrian{name}.csv' format ='genVals'/>
     <id/>
     <qid>"""
@@ -133,7 +133,7 @@ def make_datafly_config(name, k, vals, shuffled=False):
     is_shuffled = "_shuffled" if shuffled else ""
     full_xml = f"""
     <config method='Datafly' k='{k}'>
-    <input filename='../../datasets/adult/adult_cat.csv' separator=','/>
+    <input filename='../../datasets/adult/adult_cat_mapped.csv' separator=','/>
     <output filename='../anon_data/adult_randoms/datafly{name}{is_shuffled}.csv' format ='genVals'/>
     <id/>
     <qid>"""
@@ -177,7 +177,7 @@ ks = ks.astype(int) + 2
 print(pd.Series(ks).value_counts(), "\n")
 
 
-df = pd.read_csv("../../../datasets/adult/adult_cat.csv")
+df = pd.read_csv("../../../datasets/adult/adult_cat_mapped.csv")
 vals = []
 for c in df.columns[:-1]:
     s = set(df[c])
