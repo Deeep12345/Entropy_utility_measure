@@ -106,16 +106,16 @@ def make_mondrian_config(name, k, vals):
     <qid>"""
 
     for i, attr_vals in enumerate(vals):
-        full_xml += f"""
-        <att index='{i}' name='{i}th'>
-        <vgh value='[0:{len(attr_vals)-1}]'/>"""
-
+        full_xml += f"<att index='{i}' name='{i}th'>"
         ord = list(range(len(attr_vals)))
         random.shuffle(ord)
         full_xml += "<map>"
         for j, v in enumerate(attr_vals):
             full_xml += f"<entry cat='{v}' int='{ord[j]}'/>"
-        full_xml += "</map></att>"
+        full_xml += f"""
+        </map>
+        <vgh value='[0:{len(attr_vals)-1}]'/>
+        </att>"""
 
     full_xml += f"""
     </qid>
@@ -143,7 +143,6 @@ def make_datafly_config(name, k, vals, shuffled=False):
         #VGH
         tree = make_vgh(len(attr_vals))
         tree = tree_to_xml(tree, head=True)
-        full_xml += tree
 
         #Mapping
         if shuffled:
@@ -154,6 +153,8 @@ def make_datafly_config(name, k, vals, shuffled=False):
                 if j in vals[i]:
                     full_xml += f"<entry cat='{v}' int='{ord[j]}'/>"
             full_xml += "</map>"
+            
+        full_xml += tree
         full_xml += "</att>"
 
     full_xml += f"""
