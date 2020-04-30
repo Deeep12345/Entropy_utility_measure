@@ -102,7 +102,7 @@ def make_mondrian_config(name, k, vals):
     <config method='Mondrian' k='{k}'>
     <input filename='../../datasets/adult/adult_cat.csv' separator=','/>
     <output filename='../anon_data/adult_randoms/mondrian{name}.csv' format ='genVals'/>
-    <id></id>
+    <id/>
     <qid>"""
 
     for i, attr_vals in enumerate(vals):
@@ -135,7 +135,7 @@ def make_datafly_config(name, k, vals, shuffled=False):
     <config method='Datafly' k='{k}'>
     <input filename='../../datasets/adult/adult_cat.csv' separator=','/>
     <output filename='../anon_data/adult_randoms/datafly{name}{is_shuffled}.csv' format ='genVals'/>
-    <id></id>
+    <id/>
     <qid>"""
 
     for i, attr_vals in enumerate(vals):
@@ -153,7 +153,7 @@ def make_datafly_config(name, k, vals, shuffled=False):
                 if j in vals[i]:
                     full_xml += f"<entry cat='{v}' int='{ord[j]}'/>"
             full_xml += "</map>"
-            
+
         full_xml += tree
         full_xml += "</att>"
 
