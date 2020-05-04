@@ -18,9 +18,9 @@ def tune(anon_data, X_test_orig, y_test_orig, model):
     y_train = y.drop(y_test_orig.index, axis=0)
 
 
-    if model = "logreg":
+    if model == "logreg":
         model = LogisticRegression(random_state=1)
-    elif model = "RF":
+    elif model == "RF":
         parameters = {
             'n_estimators':list(range(100,500,25)),
             'max_depth':[2,3,4,5,6,7,8,None],

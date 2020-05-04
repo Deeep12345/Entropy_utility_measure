@@ -17,11 +17,10 @@ def parse_range(x):
     high = int(vals[1]) if x[-1] == ']' else int(vals[1]) - 1
     return low, high
 
-def get_datafly_depths(root):
+def get_datafly_depths(root, QIs):
     trees = {}
-    for child in root[3]:
-        name = child.attrib["name"]
-        v = child[0]
+    for child, name in zip(root[3], QIs):
+        v = child[1]
         v = et.tostring(v)
         t = xdict.parse(v)
         t = dict(t["vgh"])
@@ -43,16 +42,17 @@ def dat_tree_recur(tree, depth):
     return branches
 
 
-def get_mapping(no, algo, root):
+def get_mapping(no, algo, root, cols):
     mapping = {}
-    for child in root[3]:
+    for child, name in zip(root[3], cols):
         attr = child.attrib["name"]
         m = {}
-        for v in child[1]:
+        for v in child[0]:
             m[v.attrib["int"]] = v.attrib["cat"]
-        mapping[attr] = m
+        mapping[name] = m
 
     return mapping
+
 
 
 def one_hot(trees, mappings):
@@ -104,11 +104,11 @@ def get_mondrian_depths(anon_data, QIs):
 
 def precision_metric(anon_data, algo, no, root, QIs):
     if "datafly" in algo:
-        bound_depths = get_datafly_depths(root)
+        bound_depths = get_datafly_depths(root, QIs)
         if algo == "datafly":
             mappings = {c:{str(i):str(i) for i in range(20)} for c in QIs}
         else:
-            mappings = get_mapping(no, algo, root)
+            mappings = get_mapping(no, algo, root, QIs)
         depths = one_hot(bound_depths, mappings)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
     elif algo == "mondrian":
