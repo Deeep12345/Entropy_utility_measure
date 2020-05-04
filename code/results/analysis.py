@@ -43,20 +43,19 @@ def load_config(algo, no):
     root = xml.getroot()
     return root
 
-QIs = config["cols"][:-1]
 
 orig_data = load_csv(0,0)
+QIs = config["cols"][:-1]
+
 full_anon = orig_data.copy()
 full_anon.replace(0, 1, inplace=True)
-
 max_H = cond_entr_metric(orig_data, full_anon, QIs)
 
 results = {}
-for no in range(2, config["no_instances"]+1):
+for no in tqdm(range(1, config["no_instances"]+1)):
 
     for algo in config["algos_used"]:
         r = {}
-        print(no, algo)
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 

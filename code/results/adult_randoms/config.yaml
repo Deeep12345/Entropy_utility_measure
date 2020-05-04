@@ -1,0 +1,22 @@
+no_instances: 200
+
+analysis_name: adult_randoms
+
+algos_used:
+  - datafly_shuffled
+  - mondrian
+
+cols:
+  - age
+  - workclass
+  - education-num
+  - marital-status
+  - occupation
+  - relationship
+  - race
+  - sex
+  - capital-gain
+  - capital-loss
+  - hours-per-week
+  - native-country
+  - class
