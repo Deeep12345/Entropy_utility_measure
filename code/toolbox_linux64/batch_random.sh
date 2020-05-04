@@ -1,9 +1,9 @@
 #!/bin/bash
 
-for k in {1..200}
+for k in {107..149}
 do
-    cp configs/ring_randoms/mondrian${k}.xml config.xml
-    echo "${k} ${shuff} anonymization"
+    cp configs/adult_randoms/mondrian${k}.xml config.xml
+    echo "${k}  anonymization"
     ./anonymization.sh
     rm config.xml
 done
