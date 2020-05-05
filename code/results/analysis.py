@@ -13,9 +13,6 @@ print(f"##### Config file: {sys.argv[1]} ######")
 print(yaml.dump(config))
 sys.path.append(config["analysis_name"])
 
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-
 from metrics.diameter_metric import diam_metric
 from metrics.classification_metric import class_metric
 from metrics.entropy import cond_entr_metric
