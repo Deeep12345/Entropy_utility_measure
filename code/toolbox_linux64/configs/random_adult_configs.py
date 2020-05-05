@@ -129,7 +129,7 @@ def make_mondrian_config(name, k, vals):
     return xml_tree
 
 
-def make_datafly_config(name, k, vals, shuffled=False):
+def make_datafly_config(name, k, vals, cols, non_ordered_cols, shuffled=False):
     is_shuffled = "_shuffled" if shuffled else ""
     full_xml = f"""
     <config method='Datafly' k='{k}'>
@@ -138,23 +138,24 @@ def make_datafly_config(name, k, vals, shuffled=False):
     <id/>
     <qid>"""
 
-    for i, attr_vals in enumerate(vals):
+    for i, (name, attr_vals) in enumerate(zip(cols, vals)):
         full_xml += (f"<att index='{i}' name='{i}th'>")
         #VGH
         tree = make_vgh(len(attr_vals))
         tree = tree_to_xml(tree, head=True)
 
         #Mapping
-        if shuffled:
-            ord = list(range(len(attr_vals)))
+        ord = list(range(len(attr_vals)))
+        if shuffled or name in non_ordered_cols:
             random.shuffle(ord)
-            full_xml += "<map>"
-            for j, v in enumerate(attr_vals):
-                if j in vals[i]:
-                    full_xml += f"<entry cat='{v}' int='{ord[j]}'/>"
-            full_xml += "</map>"
+
+        full_xml += "<map>"
+        for j, v in enumerate(attr_vals):
+            full_xml += f"<entry cat='{v}' int='{ord[j]}'/>"
+        full_xml += "</map>"
 
         full_xml += tree
+        
         full_xml += "</att>"
 
     full_xml += f"""
@@ -177,6 +178,12 @@ ks = ks.astype(int) + 2
 print(pd.Series(ks).value_counts(), "\n")
 
 
+cols = ["age","workclass","education-num","marital-status","occupation",
+    "relationship","race","sex","capital-gain","capital-loss","hours-per-week",
+    "native-country"]
+
+non_ordered_cols = ["workclass", "marital-status", "occupation", "relationship",
+"race", "native-country"]
 df = pd.read_csv("../../../datasets/adult/adult_cat_mapped.csv")
 vals = []
 for c in df.columns[:-1]:
@@ -185,5 +192,6 @@ for c in df.columns[:-1]:
 
 print(vals)
 for i, k in enumerate(ks):
-    make_mondrian_config(i+1, k, vals)
-    make_datafly_config(i+1, k, vals, shuffled=True)
+    #make_mondrian_config(i+1, k, vals)
+    #make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=True)
+    make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=False)
