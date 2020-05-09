@@ -39,10 +39,7 @@ def onehot(no, algo, cols, vals, shuffled=True):
     xml = et.parse(f"../../toolbox_linux64/configs/adult_randoms/{algo}{no}{shuff}.xml")
 
     root = xml.getroot()
-    if shuffled:
-        mapping = get_mapping(no, algo, root, cols)
-    else:
-        mapping = {c:{str(i):str(i) for i in range(20)} for c in cols}
+    mapping = get_mapping(no, algo, root, cols)
     new_df = pd.DataFrame()
 
     for c, v in zip(cols, vals):
@@ -76,5 +73,5 @@ print(vals)
 for i in tqdm(range(1,201)):
     cols = ["age","workclass","education-num","marital-status","occupation","relationship","race","sex","capital-gain","capital-loss","hours-per-week","native-country","class"]
 
-    onehot(i, "datafly", cols, vals,  shuffled=True)
-    onehot(i, "mondrian", cols, vals, shuffled=True)
+    onehot(i, "datafly", cols, vals,  shuffled=False)
+    #onehot(i, "mondrian", cols, vals, shuffled=True)

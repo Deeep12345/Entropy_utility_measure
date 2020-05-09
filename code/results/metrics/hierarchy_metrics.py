@@ -105,10 +105,7 @@ def get_mondrian_depths(anon_data, QIs):
 def precision_metric(anon_data, algo, no, root, QIs):
     if "datafly" in algo:
         bound_depths = get_datafly_depths(root, QIs)
-        if algo == "datafly":
-            mappings = {c:{str(i):str(i) for i in range(20)} for c in QIs}
-        else:
-            mappings = get_mapping(no, algo, root, QIs)
+        mappings = get_mapping(no, algo, root, QIs)
         depths = one_hot(bound_depths, mappings)
         max_depths = {attr:max(depths[attr].values()) for attr in depths}
     elif algo == "mondrian":
