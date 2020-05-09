@@ -138,7 +138,7 @@ def make_datafly_config(name, k, vals, cols, non_ordered_cols, shuffled=False):
     <id/>
     <qid>"""
 
-    for i, (name, attr_vals) in enumerate(zip(cols, vals)):
+    for i, (at, attr_vals) in enumerate(zip(cols, vals)):
         full_xml += (f"<att index='{i}' name='{i}th'>")
         #VGH
         tree = make_vgh(len(attr_vals))
@@ -146,7 +146,7 @@ def make_datafly_config(name, k, vals, cols, non_ordered_cols, shuffled=False):
 
         #Mapping
         ord = list(range(len(attr_vals)))
-        if shuffled or name in non_ordered_cols:
+        if shuffled or at in non_ordered_cols:
             random.shuffle(ord)
 
         full_xml += "<map>"
@@ -155,7 +155,7 @@ def make_datafly_config(name, k, vals, cols, non_ordered_cols, shuffled=False):
         full_xml += "</map>"
 
         full_xml += tree
-        
+
         full_xml += "</att>"
 
     full_xml += f"""
