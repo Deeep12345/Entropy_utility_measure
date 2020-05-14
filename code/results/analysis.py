@@ -49,7 +49,7 @@ full_anon.replace(0, 1, inplace=True)
 max_H = cond_entr_metric(orig_data, full_anon, QIs)
 
 results = {}
-for no in tqdm(range(1, config["no_instances"]+1)):
+for no in tqdm([100, 101] + list(range(103, config["no_instances"]+1))):
 
     for algo in ["datafly"]:
         r = {}
@@ -75,10 +75,10 @@ for no in tqdm(range(1, config["no_instances"]+1)):
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics_dat.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics_dat2.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics_dat.csv",
+df.to_csv(f"{config['analysis_name']}/metrics_dat2.csv",
             index_label=["algo","no"])
