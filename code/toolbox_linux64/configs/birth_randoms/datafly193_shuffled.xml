@@ -61,8 +61,8 @@
     <entry cat="1" int="0"/>
    </map>
    <vgh value="[0:1]">
-    <vgh value="[0:0]"/>
-    <vgh value="[1:1]"/>
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
    </vgh>
   </att>
   <att index="5" name="5th">
@@ -71,8 +71,8 @@
     <entry cat="1" int="1"/>
    </map>
    <vgh value="[0:1]">
-    <vgh value="[0:0]"/>
-    <vgh value="[1:1]"/>
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
    </vgh>
   </att>
   <att index="6" name="6th">

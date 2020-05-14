@@ -52,6 +52,7 @@ results = {}
 for no in tqdm(range(1, config["no_instances"]+1)):
 
     for algo in config["algos_used"]:
+        print(no, algo)
         r = {}
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)

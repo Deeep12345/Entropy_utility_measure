@@ -1,4 +1,4 @@
-node<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <config k="3" method="Datafly">
  <input filename="../../datasets/birth_control/cmc_ups_4cat.csv" separator=","/>
  <output filename="../anon_data/birth_randoms/datafly200_shuffled.csv" format="genVals"/>
