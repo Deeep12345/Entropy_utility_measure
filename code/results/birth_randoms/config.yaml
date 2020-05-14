@@ -4,6 +4,7 @@ analysis_name: birth_randoms
 
 algos_used:
   - datafly
+  - datafly_shuffled
   - mondrian
 
 cols:

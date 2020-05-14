@@ -3,6 +3,7 @@ no_instances: 200
 analysis_name: adult_randoms
 
 algos_used:
+  - datafly
   - datafly_shuffled
   - mondrian
 

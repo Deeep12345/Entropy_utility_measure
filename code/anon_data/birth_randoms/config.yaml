@@ -1,0 +1,17 @@
+no_instances: 200
+
+analysis_name: birth_randoms
+
+dataset_path: birth_control/cmc_ups_4cat.csv
+
+cols:
+  - age
+  - wife_ed
+  - husb_ed
+  - no_kids
+  - wife_rel
+  - wife_works
+  - husb_occupation
+  - SOL_index
+  - media_exp
+  - class
