@@ -120,7 +120,7 @@ def make_mondrian_config(name, k, vals):
 
     full_xml += f"""
     </qid>
-    <sens><att index='12' name='class'/></sens>
+    <sens><att index='9' name='class'/></sens>
     </config>"""
     xml_tree = bs(full_xml, 'xml')
     f = open(f"birth_randoms/mondrian{name}.xml", "w+")
@@ -180,7 +180,7 @@ print(pd.Series(ks).value_counts(), "\n")
 
 
 cols =  ["age","wife_ed","husb_ed","no_kids","wife_rel",
-"wife_works","husb_occupation","SOL_index","media_exp","class"]
+"wife_works","husb_occupation","SOL_index","media_exp"]
 
 non_ordered_cols = []
 df = pd.read_csv("../../../datasets/birth_control/cmc_ups_4cat.csv")
@@ -193,4 +193,4 @@ print(vals)
 for i, k in enumerate(ks):
     make_mondrian_config(i+1, k, vals)
     make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=True)
-    make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=True)
+    make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=False)
