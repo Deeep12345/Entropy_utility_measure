@@ -12,8 +12,8 @@
     <entry cat="3" int="3"/>
    </map>
    <vgh value="[0:3]">
-    <vgh value="[0:1]"/>
-    <vgh value="[2:3]"/>
+    <node value="[0:1]"/>
+    <node value="[2:3]"/>
    </vgh>
   </att>
   <att index="1" name="1th">
@@ -108,8 +108,8 @@
     <entry cat="1" int="1"/>
    </map>
    <vgh value="[0:1]">
-    <vgh value="[0:0]"/>
-    <vgh value="[1:1]"/>
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
    </vgh>
   </att>
  </qid>

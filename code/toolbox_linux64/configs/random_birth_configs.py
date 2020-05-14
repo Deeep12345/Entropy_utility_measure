@@ -87,8 +87,8 @@ def tree_to_xml(t, head=False):
         if len(t["children"]) == 1:
             mi, ma =t["children"][0]["value"]
             res += f"""
-            <{title} value='[{mi}:{mi +(ma-mi)//2}]'/>
-            <{title} value='[{mi + 1 +(ma-mi)//2}:{ma}]'/>"""
+            <node value='[{mi}:{mi +(ma-mi)//2}]'/>
+            <node value='[{mi + 1 +(ma-mi)//2}:{ma}]'/>"""
         else:
             for c in t["children"]:
                 res += tree_to_xml(c)

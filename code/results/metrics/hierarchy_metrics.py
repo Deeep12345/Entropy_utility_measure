@@ -61,14 +61,6 @@ def one_hot(trees, mappings):
         t = {}
         m = mappings[attr]
         for val in trees[attr]:
-            # lo, hi = parse_range(val)
-            # oh = [1 if i >= lo and i <= hi else 0
-            #         for i in range(len(m))]
-            # mapped_oh = [0] * len(m)
-            # for used in m:
-            #     mapped_oh[int(m[used])] = oh[int(used)]
-            # t[tuple(mapped_oh)] = trees[attr][val]
-
 
             mi, ma = parse_range(val)
             oh = [0] * len(m)
