@@ -36,11 +36,12 @@ def tune(anon_data, X_test_orig, y_test_orig, type):
     predicted = model.predict(X_test_orig)
     acc = np.sum(predicted==y_test_orig)/len(predicted)
 
-    if type == "logreg":
-        test_proba = model.predict_proba(X_test_orig)
-        roc_auc = roc_auc_score(list(y_test_orig), test_proba[:, 1])
-    else:
-        roc_auc= None
+    roc_auc = None
+    # if type == "logreg":
+    #     test_proba = model.predict_proba(X_test_orig)
+    #     roc_auc = roc_auc_score(list(y_test_orig), test_proba[:, 1])
+    # else:
+    #     roc_auc= None
 
     return roc_auc, acc
 

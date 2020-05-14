@@ -57,25 +57,18 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         conf = load_config(algo, no)
 
         r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        print(r["precision"])
         r["dm"] = diam_metric(anon_data)
-        print(r["dm"])
         r["cm"] = class_metric(anon_data)
-        print(r["cm"])
         r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        print(r["entropy"])
         r["discern"] = discern_metric(anon_data)
-        print(r["discern"])
         r["ilm"] = IL_metric(anon_data, QIs)
-        print(r["ilm"])
         r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
 
-        print(no, algo, r)
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics_dat2.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics.csv",
                     index_label=["algo","no"])
 
 print(results)
