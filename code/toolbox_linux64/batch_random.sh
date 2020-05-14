@@ -1,8 +1,8 @@
 #!/bin/bash
 
-for k in {165..200}
+for k in {1..200}
 do
-    cp configs/adult_randoms/datafly${k}.xml config.xml
+    cp configs/birth_randoms/datafly${k}_shuffled.xml config.xml
     echo "${k}  anonymization"
     ./anonymization.sh
     rm config.xml

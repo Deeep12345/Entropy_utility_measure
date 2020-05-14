@@ -40,7 +40,8 @@ def auto_tune(file, y_name):
     print(automl.sprint_statistics())
     predictions = automl.predict(X_test)
     fn = f'automl_{file}.pkl'
-    pickle.dump(automl,fn)
+    outfile = open(fn, 'wb')
+    pickle.dump(automl, outfile)
     print("distances", open(fn, "wb"))
 
 

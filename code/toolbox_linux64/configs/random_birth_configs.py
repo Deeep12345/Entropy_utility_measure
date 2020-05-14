@@ -78,7 +78,6 @@ def make_vgh(no_bins):
 
 def tree_to_xml(t, head=False):
     mi, ma = t["value"]
-    mi, ma = mi+1, ma+1
     res = ""
     title = "vgh" if head else "node"
     if 'children' not in t:
@@ -191,6 +190,6 @@ for c in df.columns[:-1]:
 
 print(vals)
 for i, k in enumerate(ks):
-    make_mondrian_config(i+1, k, vals)
+    #make_mondrian_config(i+1, k, vals)
     make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=True)
     make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=False)
