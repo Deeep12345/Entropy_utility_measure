@@ -17,6 +17,7 @@ from metrics.diameter_metric import diam_metric
 from metrics.classification_metric import class_metric
 from metrics.entropy import cond_entr_metric
 from metrics.hierarchy_metrics import precision_metric
+from metrics.hellinger_metric import hellinger_metric
 from metrics.information_loss_metrics import discern_metric, IL_metric
 from metrics.ML_train import train_test
 
@@ -57,6 +58,8 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
+        r["hellinger"] = hellinger_metric(orig_data, anon_data, QIs)
+        print(r["hellinger"])
         r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
         r["dm"] = diam_metric(anon_data)
         r["cm"] = class_metric(anon_data)
