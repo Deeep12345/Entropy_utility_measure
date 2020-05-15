@@ -18,6 +18,7 @@ from metrics.classification_metric import class_metric
 from metrics.entropy import cond_entr_metric
 from metrics.hierarchy_metrics import precision_metric
 from metrics.hellinger_metric import hellinger_metric
+from metrics.bivariate_corr_metric import bivariate_corr_metric
 from metrics.information_loss_metrics import discern_metric, IL_metric
 from metrics.ML_train import train_test
 
@@ -58,24 +59,25 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        r["hellinger"] = hellinger_metric(orig_data, anon_data, QIs)
-        print(r["hellinger"])
-        r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        r["dm"] = diam_metric(anon_data)
-        r["cm"] = class_metric(anon_data)
-        r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        r["discern"] = discern_metric(anon_data)
-        r["ilm"] = IL_metric(anon_data, QIs)
-        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
+        r["bivariate_corr"] = bivariate_corr_metric(orig_data, anon_data, QIs)
+        print(r["bivariate_corr"])
+        # r["hellinger"] = hellinger_metric(orig_data, anon_data, QIs)
+        # r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
+        # r["dm"] = diam_metric(anon_data)
+        # r["cm"] = class_metric(anon_data)
+        # r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
+        # r["discern"] = discern_metric(anon_data)
+        # r["ilm"] = IL_metric(anon_data, QIs)
+        # r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
 
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics_biv.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics.csv",
+df.to_csv(f"{config['analysis_name']}/metrics_biv.csv",
             index_label=["algo","no"])
