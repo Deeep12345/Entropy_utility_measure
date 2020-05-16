@@ -4,6 +4,13 @@ from sklearn.model_selection import train_test_split
 import sklearn.metrics
 import autosklearn.regression
 import pickle
+import yaml
+
+f = open(f"{sys.argv[1]}/config.yaml")
+config = yaml.load(f, Loader=yaml.FullLoader)
+print(f"##### Config file: {sys.argv[1]} ######")
+print(yaml.dump(config))
+sys.path.append(config["analysis_name"])
 
 
 def auto_tune(file, y_name):
@@ -39,7 +46,7 @@ def auto_tune(file, y_name):
     print(automl.show_models())
     print(automl.sprint_statistics())
     predictions = automl.predict(X_test)
-    fn = f'automl_{file}.pkl'
+    fn = f"automl_{config['analysis_name']}.pkl"
     outfile = open(fn, 'wb+')
     pickle.dump(automl, outfile)
 
