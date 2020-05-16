@@ -1,10 +1,20 @@
 import pandas as pd
+
 import sys
+import shutil
+
 from sklearn.model_selection import train_test_split
 import sklearn.metrics
 import autosklearn.regression
+
 import pickle
 import yaml
+
+try:
+     shutil.rmtree("/vol/bitbucket/rd2016/tmp")
+     shutil.rmtree("/vol/bitbucket/rd2016/out")
+except:
+    print("error deleting previous training dirs")
 
 f = open(f"{sys.argv[1]}/config.yaml")
 config = yaml.load(f, Loader=yaml.FullLoader)
@@ -13,7 +23,7 @@ print(yaml.dump(config))
 sys.path.append(config["analysis_name"])
 
 
-def auto_tune(file):
+def auto_tune(file, config):
     print("Loading anonymized training data...")
     data = pd.read_csv(f"{file}/metrics.csv")
 
@@ -53,8 +63,26 @@ def auto_tune(file):
 
 
 if __name__ == '__main__':
+
     if len(sys.argv) != 2:
         print("Wrong number of arguments: python3 auto_tune.py [directory]")
     else:
+
         print(f"Tuning {sys.argv[1]}")
-        auto_tune(sys.argv[1])
+        try:
+            shutil.rmtree("/vol/bitbucket/rd2016/tmp")
+            shutil.rmtree("/vol/bitbucket/rd2016/out")
+            print("Emptied previous tmp and out dirs")
+        except:
+            print("No previous tmp and out dirs")
+
+        f = open(f"{sys.argv[1]}/config.yaml")
+        config = yaml.load(f, Loader=yaml.FullLoader)
+        print(f"##### Config file: {sys.argv[1]} ######")
+        print(yaml.dump(config))
+        sys.path.append(config["analysis_name"])
+
+        auto_tune(sys.argv[1], config)
+
+
+
