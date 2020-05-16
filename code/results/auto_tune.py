@@ -13,13 +13,13 @@ print(yaml.dump(config))
 sys.path.append(config["analysis_name"])
 
 
-def auto_tune(file, y_name):
+def auto_tune(file):
     print("Loading anonymized training data...")
     data = pd.read_csv(f"{file}/metrics.csv")
 
     print("Preparing train and test split...")
-    y = data[y_name]
-    X = data.drop([y_name, "algo", "no", "acc", "auroc"], axis=1)
+    y = data["lr_acc"]
+    X = data.drop(["lr_acc", "algo", "no", "auroc"], axis=1)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
     print(y)
@@ -31,7 +31,7 @@ def auto_tune(file, y_name):
     print(f"Starting training on {file}...\n")
 
     automl = autosklearn.regression.AutoSklearnRegressor(
-        time_left_for_this_task=1*60*60,
+        time_left_for_this_task=24*60*60,
         per_run_time_limit=60*60,
         disable_evaluator_output=False,
         initial_configurations_via_metalearning=False,
@@ -53,8 +53,8 @@ def auto_tune(file, y_name):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
-        print("Wrong number of arguments: python3 auto_tune.py [directory] [ycol]")
+    if len(sys.argv) != 2:
+        print("Wrong number of arguments: python3 auto_tune.py [directory]")
     else:
         print(f"Tuning {sys.argv[1]}")
-        auto_tune(sys.argv[1], sys.argv[2])
+        auto_tune(sys.argv[1])
