@@ -25,7 +25,7 @@ sys.path.append(config["analysis_name"])
 
 def auto_tune(file, config):
     print("Loading anonymized training data...")
-    data = pd.read_csv(f"{file}/metrics.csv")
+    data = pd.read_csv(f"{file}/trainset.csv")
 
     print("Preparing train and test split...")
     y = data["lr_acc"]
