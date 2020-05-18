@@ -56,7 +56,7 @@ full_anon.replace(0, 1, inplace=True)
 max_H = cond_entr_metric(orig_data, full_anon, QIs)
 
 results = {}
-for no in tqdm(range(1, config["no_instances"]+1)):
+for no in range(1, config["no_instances"]+1):
 
     for algo in config["algos_used"]:
         print(no, algo)
@@ -77,7 +77,6 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         r["granularity"] = granularity_metric(anon_data, QIs)
         r["dse"] = distance_squared_error(anon_data, orig_data, QIs)
         r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
-
         results[(algo, no)] = r
 
     if no % 20 == 0:

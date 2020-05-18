@@ -14,5 +14,4 @@ def granularity_metric(anon_data, QIs):
         gran += col_gran
 
     rel_gran = gran / max_gran
-    print(rel_gran)
     return rel_gran
