@@ -2,7 +2,7 @@ no_instances: 200
 
 analysis_name: birth_randoms
 
-dataset_path: birth_control/cmc_ups_4cat.csv
+dataset_path: birth_control/cmc_4cat.csv
 
 cols:
   - age

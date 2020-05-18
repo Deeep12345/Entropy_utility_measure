@@ -9,7 +9,6 @@ def discern_metric(anon_data):
     return sum(squares) / max_discern
 
 
-
 def IL_metric(anon_data, orig_cols):
     eqs = anon_data[anon_data.columns[:-1]].drop_duplicates()
     sizes = anon_data.groupby(list(anon_data.columns[:-1]), as_index=False).size()

@@ -17,6 +17,7 @@ def parse_range(x):
     high = int(vals[1]) if x[-1] == ']' else int(vals[1]) - 1
     return low, high
 
+
 def get_datafly_depths(root, QIs):
     trees = {}
     for child, name in zip(root[3], QIs):
@@ -31,6 +32,7 @@ def get_datafly_depths(root, QIs):
         trees[name] = t
 
     return trees
+
 
 def dat_tree_recur(tree, depth):
     branches = {tree['@value']: depth}
@@ -52,7 +54,6 @@ def get_mapping(no, algo, root, cols):
         mapping[name] = m
 
     return mapping
-
 
 
 def one_hot(trees, mappings):
@@ -77,7 +78,6 @@ def one_hot(trees, mappings):
         oh_trees[attr] = t
 
     return oh_trees
-
 
 
 def get_mondrian_depths(anon_data, QIs):

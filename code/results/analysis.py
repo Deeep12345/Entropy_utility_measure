@@ -17,10 +17,15 @@ from metrics.diameter_metric import diam_metric
 from metrics.classification_metric import class_metric
 from metrics.entropy import cond_entr_metric
 from metrics.hierarchy_metrics import precision_metric
+from metrics.ambiguity_metric import ambiguity_metric
 from metrics.hellinger_metric import hellinger_metric
 from metrics.bivariate_corr_metric import bivariate_corr_metric
 from metrics.information_loss_metrics import discern_metric, IL_metric
+from metrics.avg_eq_size_metric import avg_eq_size_metric
+from metrics.granularity_metric import granularity_metric
+from metrics.distance_squared_error import distance_squared_error
 from metrics.ML_train import train_test
+
 
 def load_csv(algo, no, original_oh=True):
     if original_oh:
@@ -66,18 +71,21 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         # r["cm"] = class_metric(anon_data)
         # r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
         # r["discern"] = discern_metric(anon_data)
+        # r["avg_eq_size"] = avg_eq_size_metric(anon_data, conf)
+        # r["ambiguity"] = ambiguity_metric(anon_data, QIs)
+        # r["granularity"] = granularity_metric(anon_data, QIs)
+        # r["dse"] = distance_squared_error(anon_data, orig_data, QIs)
         # r["ilm"] = IL_metric(anon_data, QIs)
-        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
-        print(r["auroc"], r["lr_acc"])
+        #r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
 
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics_auc_acc.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics_additional.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics_auc_acc.csv",
+df.to_csv(f"{config['analysis_name']}/metrics_additional.csv",
             index_label=["algo","no"])
