@@ -100,7 +100,7 @@ def make_mondrian_config(name, k, vals):
     mappings = {}
     full_xml = f"""
     <config method='Mondrian' k='{k}'>
-    <input filename='../../datasets/birth_control/cmc_ups_4cat.csv' separator=','/>
+    <input filename='../../datasets/birth_control/cmc_4cat.csv' separator=','/>
     <output filename='../anon_data/birth_randoms/mondrian{name}.csv' format ='genVals'/>
     <id/>
     <qid>"""
@@ -133,7 +133,7 @@ def make_datafly_config(name, k, vals, cols, non_ordered_cols, shuffled=False):
     is_shuffled = "_shuffled" if shuffled else ""
     full_xml = f"""
     <config method='Datafly' k='{k}'>
-    <input filename='../../datasets/birth_control/cmc_ups_4cat.csv' separator=','/>
+    <input filename='../../datasets/birth_control/cmc_4cat.csv' separator=','/>
     <output filename='../anon_data/birth_randoms/datafly{name}{is_shuffled}.csv' format ='genVals'/>
     <id/>
     <qid>"""
@@ -182,7 +182,7 @@ cols =  ["age","wife_ed","husb_ed","no_kids","wife_rel",
 "wife_works","husb_occupation","SOL_index","media_exp"]
 
 non_ordered_cols = []
-df = pd.read_csv("../../../datasets/birth_control/cmc_ups_4cat.csv")
+df = pd.read_csv("../../../datasets/birth_control/cmc_4cat.csv")
 vals = []
 for c in df.columns[:-1]:
     s = set(df[c])
@@ -190,6 +190,6 @@ for c in df.columns[:-1]:
 
 print(vals)
 for i, k in enumerate(ks):
-    #make_mondrian_config(i+1, k, vals)
+    make_mondrian_config(i+1, k, vals)
     make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=True)
     make_datafly_config(i+1, k, vals, cols, non_ordered_cols, shuffled=False)

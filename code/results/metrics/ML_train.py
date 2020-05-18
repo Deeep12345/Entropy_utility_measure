@@ -10,6 +10,7 @@ from sklearn.metrics import roc_auc_score
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
 
 import warnings
 warnings.simplefilter("ignore")
@@ -20,9 +21,13 @@ def tune(anon_data, X_test_orig, y_test_orig, type):
     X_train = X.drop(X_test_orig.index, axis=0)
     y_train = y.drop(y_test_orig.index, axis=0)
 
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_orig_scaled = scaler.fit_transform(X_test_orig)
+
 
     if type == "logreg":
-        model = LogisticRegression(random_state=1)
+        model = LogisticRegression(random_state=1, max_iter=500, n_jobs=-1)
     elif type == "RF":
         parameters = {
             'n_estimators':list(range(100,500,25)),
@@ -32,16 +37,20 @@ def tune(anon_data, X_test_orig, y_test_orig, type):
         model = GridSearchCV(model, parameters, n_jobs=-1)
 
 
-    model.fit(X_train, y_train)
-    predicted = model.predict(X_test_orig)
+    model.fit(X_train_scaled, y_train)
+    predicted = model.predict(X_test_orig_scaled)
     acc = np.sum(predicted==y_test_orig)/len(predicted)
 
     roc_auc = None
-    # if type == "logreg":
-    #     test_proba = model.predict_proba(X_test_orig)
-    #     roc_auc = roc_auc_score(list(y_test_orig), test_proba[:, 1])
-    # else:
-    #     roc_auc= None
+    if type == "logreg" and len(set(y_train)) == 2:
+        test_proba = model.predict_proba(X_test_orig_scaled)
+        roc_auc = roc_auc_score(list(y_test_orig), test_proba[:, 1])
+    else:
+    #multiclass
+        test_proba = model.predict_proba(X_test_orig_scaled)
+        roc_auc = roc_auc_score(list(y_test_orig), test_proba,
+                                multi_class='ovr')
+
 
     return roc_auc, acc
 

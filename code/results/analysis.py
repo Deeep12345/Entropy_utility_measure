@@ -59,8 +59,7 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        r["bivariate_corr"] = bivariate_corr_metric(orig_data, anon_data, QIs)
-        print(r["bivariate_corr"])
+        #r["bivariate_corr"] = bivariate_corr_metric(orig_data, anon_data, QIs)
         # r["hellinger"] = hellinger_metric(orig_data, anon_data, QIs)
         # r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
         # r["dm"] = diam_metric(anon_data)
@@ -68,16 +67,16 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         # r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
         # r["discern"] = discern_metric(anon_data)
         # r["ilm"] = IL_metric(anon_data, QIs)
-        # r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
+        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
 
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics_biv.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics_auc_acc.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics_biv.csv",
+df.to_csv(f"{config['analysis_name']}/metrics_auc_acc.csv",
             index_label=["algo","no"])
