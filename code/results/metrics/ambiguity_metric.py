@@ -1,4 +1,5 @@
 import numpy as np
+from operator import mul
 
 def ambiguity_metric(anon_data, QIs):
     max_choices = []
@@ -15,9 +16,13 @@ def ambiguity_metric(anon_data, QIs):
     row_choices = (zip(*choices))
     tot = 0
     for i in row_choices:
-        tot += np.prod(i)
+        m = 1
+        for x in i:
+            m *= x
+        tot += m
 
     dataset_amb = tot/len(anon_data)
-    max_amb = np.prod(max_choices)
-    rel_amb = dataset_amb / max_amb
+    rel_amb = dataset_amb
+    for i in max_choices:
+        rel_amb /= i
     return rel_amb

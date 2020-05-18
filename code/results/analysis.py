@@ -77,14 +77,15 @@ for no in range(1, config["no_instances"]+1):
         r["granularity"] = granularity_metric(anon_data, QIs)
         r["dse"] = distance_squared_error(anon_data, orig_data, QIs)
         r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
+        print(r)
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics_add.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics.csv",
+df.to_csv(f"{config['analysis_name']}/metrics_add.csv",
             index_label=["algo","no"])
