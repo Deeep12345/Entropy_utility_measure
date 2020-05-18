@@ -64,28 +64,28 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         anon_data = load_csv(algo, no, original_oh=False)
         conf = load_config(algo, no)
 
-        #r["bivariate_corr"] = bivariate_corr_metric(orig_data, anon_data, QIs)
-        # r["hellinger"] = hellinger_metric(orig_data, anon_data, QIs)
-        # r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
-        # r["dm"] = diam_metric(anon_data)
-        # r["cm"] = class_metric(anon_data)
-        # r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
-        # r["discern"] = discern_metric(anon_data)
-        # r["avg_eq_size"] = avg_eq_size_metric(anon_data, conf)
-        # r["ambiguity"] = ambiguity_metric(anon_data, QIs)
-        # r["granularity"] = granularity_metric(anon_data, QIs)
-        # r["dse"] = distance_squared_error(anon_data, orig_data, QIs)
-        # r["ilm"] = IL_metric(anon_data, QIs)
-        #r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
+        r["entropy"] = cond_entr_metric(orig_data, anon_data, QIs)/max_H
+        r["cm"] = class_metric(anon_data)
+        r["dm"] = diam_metric(anon_data)
+        r["discern"] = discern_metric(anon_data)
+        r["precision"] = precision_metric(anon_data, algo, no, conf, QIs)
+        r["ilm"] = IL_metric(anon_data, QIs)
+        r["hellinger"] = hellinger_metric(orig_data, anon_data, QIs)
+        r["bivariate_corr"] = bivariate_corr_metric(orig_data, anon_data, QIs)
+        r["avg_eq_size"] = avg_eq_size_metric(anon_data, conf)
+        r["ambiguity"] = ambiguity_metric(anon_data, QIs)
+        r["granularity"] = granularity_metric(anon_data, QIs)
+        r["dse"] = distance_squared_error(anon_data, orig_data, QIs)
+        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
 
         results[(algo, no)] = r
 
     if no % 20 == 0:
         df = pd.DataFrame.from_dict(results, orient='index')
-        df.to_csv(f"{config['analysis_name']}/metrics_additional.csv",
+        df.to_csv(f"{config['analysis_name']}/metrics.csv",
                     index_label=["algo","no"])
 
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
-df.to_csv(f"{config['analysis_name']}/metrics_additional.csv",
+df.to_csv(f"{config['analysis_name']}/metrics.csv",
             index_label=["algo","no"])
