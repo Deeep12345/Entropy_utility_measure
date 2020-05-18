@@ -79,8 +79,8 @@ for c in df.columns[:-1]:
 print(vals)
 
 cols = config["cols"]
-for i in tqdm(range(config["no_instances"]):
+for i in tqdm(range(config["no_instances"])):
 
     onehot(i+1, "datafly", cols, vals,  shuffled=False)
-    # onehot(i+1, "mondrian", cols, vals, shuffled=True)
-    # onehot(i+1, "datafly", cols, vals, shuffled=True)
+    onehot(i+1, "mondrian", cols, vals, shuffled=True)
+    onehot(i+1, "datafly", cols, vals, shuffled=True)

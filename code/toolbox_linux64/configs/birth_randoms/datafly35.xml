@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<config k="2" method="Datafly">
- <input filename="../../datasets/birth_control/cmc_ups_4cat.csv" separator=","/>
+<config k="3" method="Datafly">
+ <input filename="../../datasets/birth_control/cmc_4cat.csv" separator=","/>
  <output filename="../anon_data/birth_randoms/datafly35.csv" format="genVals"/>
  <id/>
  <qid>
@@ -12,14 +12,9 @@
     <entry cat="3" int="3"/>
    </map>
    <vgh value="[0:3]">
-    <node value="[0:1]">
-     <node value="[0:0]"/>
-     <node value="[1:1]"/>
-    </node>
-    <node value="[2:3]">
-     <node value="[2:2]"/>
-     <node value="[3:3]"/>
-    </node>
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+    <node value="[2:3]"/>
    </vgh>
   </att>
   <att index="1" name="1th">
@@ -30,14 +25,9 @@
     <entry cat="3" int="3"/>
    </map>
    <vgh value="[0:3]">
-    <node value="[0:1]">
-     <node value="[0:0]"/>
-     <node value="[1:1]"/>
-    </node>
-    <node value="[2:3]">
-     <node value="[2:2]"/>
-     <node value="[3:3]"/>
-    </node>
+    <node value="[0:0]"/>
+    <node value="[1:2]"/>
+    <node value="[3:3]"/>
    </vgh>
   </att>
   <att index="2" name="2th">
@@ -48,14 +38,9 @@
     <entry cat="3" int="3"/>
    </map>
    <vgh value="[0:3]">
-    <node value="[0:1]">
-     <node value="[0:0]"/>
-     <node value="[1:1]"/>
-    </node>
-    <node value="[2:3]">
-     <node value="[2:2]"/>
-     <node value="[3:3]"/>
-    </node>
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+    <node value="[2:3]"/>
    </vgh>
   </att>
   <att index="3" name="3th">
@@ -67,8 +52,7 @@
    </map>
    <vgh value="[0:3]">
     <node value="[0:0]"/>
-    <node value="[1:1]"/>
-    <node value="[2:2]"/>
+    <node value="[1:2]"/>
     <node value="[3:3]"/>
    </vgh>
   </att>
@@ -101,7 +85,8 @@
    </map>
    <vgh value="[0:3]">
     <node value="[0:0]"/>
-    <node value="[1:2]"/>
+    <node value="[1:1]"/>
+    <node value="[2:2]"/>
     <node value="[3:3]"/>
    </vgh>
   </att>
@@ -113,9 +98,14 @@
     <entry cat="3" int="3"/>
    </map>
    <vgh value="[0:3]">
-    <node value="[0:0]"/>
-    <node value="[1:2]"/>
-    <node value="[3:3]"/>
+    <node value="[0:1]">
+     <node value="[0:0]"/>
+     <node value="[1:1]"/>
+    </node>
+    <node value="[2:3]">
+     <node value="[2:2]"/>
+     <node value="[3:3]"/>
+    </node>
    </vgh>
   </att>
   <att index="8" name="8th">

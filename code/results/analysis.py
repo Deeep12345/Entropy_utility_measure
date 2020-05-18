@@ -68,6 +68,7 @@ for no in tqdm(range(1, config["no_instances"]+1)):
         # r["discern"] = discern_metric(anon_data)
         # r["ilm"] = IL_metric(anon_data, QIs)
         r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
+        print(r["auroc"], r["lr_acc"])
 
         results[(algo, no)] = r
 
