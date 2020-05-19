@@ -182,7 +182,7 @@ cols = ['sex', 'age', 'education', 'currentSmoker', 'cigsPerDay', 'BPMeds',
        'prevalentStroke', 'prevalentHyp', 'diabetes', 'totChol', 'sysBP',
        'diaBP', 'BMI', 'heartRate', 'glucose']
 
-
+non_ordered_cols=[]
 df = pd.read_csv("../../../datasets/heart/heart_cat.csv")
 vals = []
 for c in df.columns[:-1]:

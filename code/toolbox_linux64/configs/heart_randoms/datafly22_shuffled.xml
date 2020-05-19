@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config k="5" method="Datafly">
+ <input filename="../../datasets/heart/heart_cat.csv" separator=","/>
+ <output filename="../anon_data/heart_randoms/datafly22_shuffled.csv" format="genVals"/>
+ <id/>
+ <qid>
+  <att index="0" name="0th">
+   <map>
+    <entry cat="0" int="1"/>
+    <entry cat="1" int="0"/>
+   </map>
+   <vgh value="[0:1]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+   </vgh>
+  </att>
+  <att index="1" name="1th">
+   <map>
+    <entry cat="0" int="13"/>
+    <entry cat="1" int="18"/>
+    <entry cat="2" int="8"/>
+    <entry cat="3" int="6"/>
+    <entry cat="4" int="5"/>
+    <entry cat="5" int="1"/>
+    <entry cat="6" int="15"/>
+    <entry cat="7" int="7"/>
+    <entry cat="8" int="19"/>
+    <entry cat="9" int="12"/>
+    <entry cat="10" int="11"/>
+    <entry cat="11" int="16"/>
+    <entry cat="12" int="0"/>
+    <entry cat="13" int="14"/>
+    <entry cat="14" int="17"/>
+    <entry cat="15" int="9"/>
+    <entry cat="16" int="10"/>
+    <entry cat="17" int="2"/>
+    <entry cat="18" int="4"/>
+    <entry cat="19" int="3"/>
+   </map>
+   <vgh value="[0:19]">
+    <node value="[0:1]"/>
+    <node value="[2:9]"/>
+    <node value="[10:10]"/>
+    <node value="[11:16]"/>
+    <node value="[17:19]"/>
+   </vgh>
+  </att>
+  <att index="2" name="2th">
+   <map>
+    <entry cat="0" int="3"/>
+    <entry cat="1" int="0"/>
+    <entry cat="2" int="1"/>
+    <entry cat="3" int="2"/>
+   </map>
+   <vgh value="[0:3]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+    <node value="[2:3]"/>
+   </vgh>
+  </att>
+  <att index="3" name="3th">
+   <map>
+    <entry cat="0" int="1"/>
+    <entry cat="1" int="0"/>
+   </map>
+   <vgh value="[0:1]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+   </vgh>
+  </att>
+  <att index="4" name="4th">
+   <map>
+    <entry cat="0" int="5"/>
+    <entry cat="1" int="7"/>
+    <entry cat="2" int="15"/>
+    <entry cat="3" int="3"/>
+    <entry cat="4" int="14"/>
+    <entry cat="5" int="1"/>
+    <entry cat="6" int="8"/>
+    <entry cat="7" int="10"/>
+    <entry cat="8" int="12"/>
+    <entry cat="9" int="2"/>
+    <entry cat="10" int="13"/>
+    <entry cat="11" int="11"/>
+    <entry cat="12" int="9"/>
+    <entry cat="13" int="0"/>
+    <entry cat="14" int="4"/>
+    <entry cat="15" int="6"/>
+   </map>
+   <vgh value="[0:15]">
+    <node value="[0:3]">
+     <node value="[0:1]"/>
+     <node value="[2:2]"/>
+     <node value="[3:3]"/>
+    </node>
+    <node value="[4:10]">
+     <node value="[4:6]"/>
+     <node value="[7:7]"/>
+     <node value="[8:10]"/>
+    </node>
+    <node value="[11:13]">
+     <node value="[11:11]"/>
+     <node value="[12:12]"/>
+     <node value="[13:13]"/>
+    </node>
+    <node value="[14:15]">
+     <node value="[14:14]"/>
+     <node value="[15:15]"/>
+    </node>
+   </vgh>
+  </att>
+  <att index="5" name="5th">
+   <map>
+    <entry cat="0" int="0"/>
+    <entry cat="1" int="1"/>
+   </map>
+   <vgh value="[0:1]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+   </vgh>
+  </att>
+  <att index="6" name="6th">
+   <map>
+    <entry cat="0" int="1"/>
+    <entry cat="1" int="0"/>
+   </map>
+   <vgh value="[0:1]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+   </vgh>
+  </att>
+  <att index="7" name="7th">
+   <map>
+    <entry cat="0" int="0"/>
+    <entry cat="1" int="1"/>
+   </map>
+   <vgh value="[0:1]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+   </vgh>
+  </att>
+  <att index="8" name="8th">
+   <map>
+    <entry cat="0" int="0"/>
+    <entry cat="1" int="1"/>
+   </map>
+   <vgh value="[0:1]">
+    <node value="[0:0]"/>
+    <node value="[1:1]"/>
+   </vgh>
+  </att>
+  <att index="9" name="9th">
+   <map>
+    <entry cat="0" int="9"/>
+    <entry cat="1" int="6"/>
+    <entry cat="2" int="13"/>
+    <entry cat="3" int="7"/>
+    <entry cat="4" int="3"/>
+    <entry cat="5" int="4"/>
+    <entry cat="6" int="14"/>
+    <entry cat="7" int="0"/>
+    <entry cat="8" int="2"/>
+    <entry cat="9" int="10"/>
+    <entry cat="10" int="15"/>
+    <entry cat="11" int="11"/>
+    <entry cat="12" int="8"/>
+    <entry cat="13" int="1"/>
+    <entry cat="14" int="12"/>
+    <entry cat="15" int="5"/>
+   </map>
+   <vgh value="[0:15]">
+    <node value="[0:3]"/>
+    <node value="[4:12]"/>
+    <node value="[13:13]"/>
+    <node value="[14:14]"/>
+    <node value="[15:15]"/>
+   </vgh>
+  </att>
+  <att index="10" name="10th">
+   <map>
+    <entry cat="0" int="10"/>
+    <entry cat="1" int="14"/>
+    <entry cat="2" int="2"/>
+    <entry cat="3" int="4"/>
+    <entry cat="4" int="8"/>
+    <entry cat="5" int="5"/>
+    <entry cat="6" int="9"/>
+    <entry cat="7" int="0"/>
+    <entry cat="8" int="15"/>
+    <entry cat="9" int="6"/>
+    <entry cat="10" int="7"/>
+    <entry cat="11" int="16"/>
+    <entry cat="12" int="13"/>
+    <entry cat="13" int="1"/>
+    <entry cat="14" int="11"/>
+    <entry cat="15" int="3"/>
+    <entry cat="16" int="12"/>
+   </map>
+   <vgh value="[0:16]">
+    <node value="[0:2]">
+     <node value="[0:1]"/>
+     <node value="[2:2]"/>
+    </node>
+    <node value="[3:8]">
+     <node value="[3:3]"/>
+     <node value="[4:4]"/>
+     <node value="[5:6]"/>
+     <node value="[7:8]"/>
+    </node>
+    <node value="[9:12]">
+     <node value="[9:9]"/>
+     <node value="[10:10]"/>
+     <node value="[11:12]"/>
+    </node>
+    <node value="[13:14]">
+     <node value="[13:13]"/>
+     <node value="[14:14]"/>
+    </node>
+    <node value="[15:16]">
+     <node value="[15:15]"/>
+     <node value="[16:16]"/>
+    </node>
+   </vgh>
+  </att>
+  <att index="11" name="11th">
+   <map>
+    <entry cat="0" int="13"/>
+    <entry cat="1" int="1"/>
+    <entry cat="2" int="9"/>
+    <entry cat="3" int="12"/>
+    <entry cat="4" int="17"/>
+    <entry cat="5" int="11"/>
+    <entry cat="6" int="14"/>
+    <entry cat="7" int="15"/>
+    <entry cat="8" int="7"/>
+    <entry cat="9" int="2"/>
+    <entry cat="10" int="6"/>
+    <entry cat="11" int="19"/>
+    <entry cat="12" int="10"/>
+    <entry cat="13" int="18"/>
+    <entry cat="14" int="4"/>
+    <entry cat="15" int="3"/>
+    <entry cat="16" int="8"/>
+    <entry cat="17" int="5"/>
+    <entry cat="18" int="16"/>
+    <entry cat="19" int="0"/>
+   </map>
+   <vgh value="[0:19]">
+    <node value="[0:3]">
+     <node value="[0:2]"/>
+     <node value="[3:3]"/>
+    </node>
+    <node value="[4:8]">
+     <node value="[4:6]"/>
+     <node value="[7:7]"/>
+     <node value="[8:8]"/>
+    </node>
+    <node value="[9:14]">
+     <node value="[9:9]"/>
+     <node value="[10:13]"/>
+     <node value="[14:14]"/>
+    </node>
+    <node value="[15:19]">
+     <node value="[15:15]"/>
+     <node value="[16:16]"/>
+     <node value="[17:19]"/>
+    </node>
+   </vgh>
+  </att>
+  <att index="12" name="12th">
+   <map>
+    <entry cat="0" int="0"/>
+    <entry cat="1" int="2"/>
+    <entry cat="2" int="1"/>
+    <entry cat="3" int="5"/>
+    <entry cat="4" int="7"/>
+    <entry cat="5" int="16"/>
+    <entry cat="6" int="14"/>
+    <entry cat="7" int="6"/>
+    <entry cat="8" int="4"/>
+    <entry cat="9" int="8"/>
+    <entry cat="10" int="12"/>
+    <entry cat="11" int="9"/>
+    <entry cat="12" int="3"/>
+    <entry cat="13" int="11"/>
+    <entry cat="14" int="15"/>
+    <entry cat="15" int="10"/>
+    <entry cat="16" int="13"/>
+   </map>
+   <vgh value="[0:16]">
+    <node value="[0:2]"/>
+    <node value="[3:8]"/>
+    <node value="[9:9]"/>
+    <node value="[10:10]"/>
+    <node value="[11:16]"/>
+   </vgh>
+  </att>
+  <att index="13" name="13th">
+   <map>
+    <entry cat="0" int="3"/>
+    <entry cat="1" int="16"/>
+    <entry cat="2" int="5"/>
+    <entry cat="3" int="12"/>
+    <entry cat="4" int="8"/>
+    <entry cat="5" int="9"/>
+    <entry cat="6" int="17"/>
+    <entry cat="7" int="14"/>
+    <entry cat="8" int="2"/>
+    <entry cat="9" int="4"/>
+    <entry cat="10" int="6"/>
+    <entry cat="11" int="15"/>
+    <entry cat="12" int="10"/>
+    <entry cat="13" int="0"/>
+    <entry cat="14" int="18"/>
+    <entry cat="15" int="7"/>
+    <entry cat="16" int="1"/>
+    <entry cat="17" int="13"/>
+    <entry cat="18" int="11"/>
+   </map>
+   <vgh value="[0:18]">
+    <node value="[0:3]">
+     <node value="[0:0]"/>
+     <node value="[1:1]"/>
+     <node value="[2:2]"/>
+     <node value="[3:3]"/>
+    </node>
+    <node value="[4:6]">
+     <node value="[4:5]"/>
+     <node value="[6:6]"/>
+    </node>
+    <node value="[7:12]">
+     <node value="[7:7]"/>
+     <node value="[8:10]"/>
+     <node value="[11:11]"/>
+     <node value="[12:12]"/>
+    </node>
+    <node value="[13:15]">
+     <node value="[13:14]"/>
+     <node value="[15:15]"/>
+    </node>
+    <node value="[16:18]">
+     <node value="[16:16]"/>
+     <node value="[17:17]"/>
+     <node value="[18:18]"/>
+    </node>
+   </vgh>
+  </att>
+  <att index="14" name="14th">
+   <map>
+    <entry cat="0" int="0"/>
+    <entry cat="1" int="3"/>
+    <entry cat="2" int="2"/>
+    <entry cat="3" int="6"/>
+    <entry cat="4" int="15"/>
+    <entry cat="5" int="17"/>
+    <entry cat="6" int="9"/>
+    <entry cat="7" int="14"/>
+    <entry cat="8" int="18"/>
+    <entry cat="9" int="5"/>
+    <entry cat="10" int="19"/>
+    <entry cat="11" int="8"/>
+    <entry cat="12" int="11"/>
+    <entry cat="13" int="12"/>
+    <entry cat="14" int="1"/>
+    <entry cat="15" int="7"/>
+    <entry cat="16" int="10"/>
+    <entry cat="17" int="16"/>
+    <entry cat="18" int="13"/>
+    <entry cat="19" int="4"/>
+   </map>
+   <vgh value="[0:19]">
+    <node value="[0:2]">
+     <node value="[0:0]"/>
+     <node value="[1:2]"/>
+    </node>
+    <node value="[3:6]">
+     <node value="[3:3]"/>
+     <node value="[4:4]"/>
+     <node value="[5:5]"/>
+     <node value="[6:6]"/>
+    </node>
+    <node value="[7:12]">
+     <node value="[7:7]"/>
+     <node value="[8:8]"/>
+     <node value="[9:10]"/>
+     <node value="[11:12]"/>
+    </node>
+    <node value="[13:15]">
+     <node value="[13:13]"/>
+     <node value="[14:15]"/>
+    </node>
+    <node value="[16:19]">
+     <node value="[16:17]"/>
+     <node value="[18:18]"/>
+     <node value="[19:19]"/>
+    </node>
+   </vgh>
+  </att>
+ </qid>
+ <sens>
+  <att index="15" name="class"/>
+ </sens>
+</config>
