@@ -1,0 +1,23 @@
+no_instances: 200
+
+analysis_name: heart_randoms
+
+dataset_path: heart/heart_cat.csv
+
+cols:
+  - gender
+  - age
+  - education
+  - currentSmoker
+  - cigsPerDay
+  - BPMeds
+  - prevalentStroke
+  - prevalentHyp
+  - diabetes
+  - totChol
+  - sysBP
+  - diaBP
+  - BMI
+  - heartRate
+  - glucose
+  - class

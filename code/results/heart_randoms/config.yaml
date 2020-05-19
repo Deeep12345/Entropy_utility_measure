@@ -1,0 +1,28 @@
+no_instances: 200
+
+analysis_name: heart_randoms
+
+dataset_path: heart/heart_cat.csv
+
+algos_used:
+  - datafly
+  - datafly_shuffled
+  - mondrian
+
+cols:
+  - gender
+  - age
+  - education
+  - currentSmoker
+  - cigsPerDay
+  - BPMeds
+  - prevalentStroke
+  - prevalentHyp
+  - diabetes
+  - totChol
+  - sysBP
+  - diaBP
+  - BMI
+  - heartRate
+  - glucose
+  - class
