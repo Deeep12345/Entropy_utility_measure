@@ -88,7 +88,7 @@ for no in range(1, config["no_instances"]+1):
         # print("granularity", r["granularity"])
         # r["dse"] = distance_squared_error(anon_data, orig_data, QIs)
         # print("dsee", r["dse"])
-        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "logreg")
+        r["auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "lr")
         print("accs", r["auroc"], r["lr_acc"])
         results[(algo, no)] = r
 
