@@ -44,8 +44,6 @@ for no in range(1, config["no_instances"]+1):
         r["knn_pca_auroc"], r["knn_pca_acc"] = train_test(orig_data, anon_data, "knn", use_pca=True)
         print("knn, pca:   ", r["knn_pca_auroc"], r["knn_pca_acc"])
 
-        r["rf_auroc"], r["rf_acc"] = train_test(orig_data, anon_data, "rf")
-        print("rf, no pca:   ", r["rf_auroc"], r["rf_acc"])
         r["rf_pca_auroc"], r["rf_pca_acc"] = train_test(orig_data, anon_data, "rf", use_pca=True)
         print("rf, pca:   ", r["rf_pca_auroc"], r["rf_pca_acc"])
 
