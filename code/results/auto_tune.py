@@ -12,7 +12,7 @@ import yaml
 
 def auto_tune(dataset, target_var):
     print("Loading anonymized training data...")
-    data = pd.read_csv(f"{dataset}/trainset.csv")
+    data = pd.read_csv(f"{dataset}/metrics_trainset.csv")
     targets = pd.read_csv(f"{dataset}/accuracies_trainset.csv")
 
     print(f"Using {target_var}...")
