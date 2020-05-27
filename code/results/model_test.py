@@ -44,7 +44,7 @@ def pairwise_comparisons(model, dataset, target):
 # target = sys.argv[2]
 
 res = {}
-for dataset in ["birth", "ring", "adult"]:#, "heart"]:
+for dataset in ["birth", "ring", "adult", "heart"]:
     dataset += "_randoms"
     r = {}
     for target in ["lr_acc", "lr_auroc", "knn_pca_acc", "knn_pca_auroc",
