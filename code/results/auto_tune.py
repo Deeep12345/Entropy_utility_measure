@@ -10,10 +10,12 @@ import autosklearn.regression
 import pickle
 import yaml
 
-def auto_tune(dataset, target_var):
+def auto_tune(dataset, target_var, algo):
     print("Loading anonymized training data...")
     data = pd.read_csv(f"{dataset}/metrics_trainset.csv").drop('precision', axis=1)
+    data = data[data["algo"] == algo]
     targets = pd.read_csv(f"{dataset}/accuracies_trainset.csv")
+    targets = targets[targets["algo"] == algo]
 
     print(f"Using {target_var}...")
     y = targets[target_var]
@@ -34,8 +36,8 @@ def auto_tune(dataset, target_var):
         disable_evaluator_output=False,
         initial_configurations_via_metalearning=False,
         n_jobs=6,
-        tmp_folder=f"/vol/bitbucket/rd2016/tmp_{dataset}_{target_var}",
-        output_folder=f"/vol/bitbucket/rd2016/out_{dataset}_{target_var}"
+        tmp_folder=f"/vol/bitbucket/rd2016/tmp_{dataset}_{target_var}_{algo}",
+        output_folder=f"/vol/bitbucket/rd2016/out_{dataset}_{target_var}_{algo}"
     )
     automl.fit(X_train, y_train, X_test=X_test, y_test=y_test)
     print("############ Done ! ################\n")
@@ -44,7 +46,7 @@ def auto_tune(dataset, target_var):
     print(automl.show_models())
     print(automl.sprint_statistics())
     predictions = automl.predict(X_test)
-    fn = f"autosklearn_models/automl_{dataset}_{target_var}_noprec.pkl"
+    fn = f"autosklearn_models/{dataset}_{target_var}_{algo}_noprec.pkl"
     outfile = open(fn, 'wb+')
     pickle.dump(automl, outfile)
 
@@ -52,25 +54,20 @@ def auto_tune(dataset, target_var):
 
 if __name__ == '__main__':
 
-    if len(sys.argv) != 3:
-        print("Wrong number of arguments: python3 auto_tune.py [directory] [target_var]")
+    if len(sys.argv) != 4:
+        print("Wrong number of arguments: python3 auto_tune.py [directory] [target_var] [algo]")
     else:
         dataset =sys.argv[1]
         target_var = sys.argv[2]
-        print(f"Tuning {dataset} for {target_var}")
-
-        # f = open(f"{sys.argv[1]}/config.yaml")
-        # config = yaml.load(f, Loader=yaml.FullLoader)
-        # print(f"##### Config file: {sys.argv[1]} ######")
-        # print(yaml.dump(config))
-        # sys.path.append(config["analysis_name"])
+        algo = sys.argv[3]
+        print(f"Tuning {dataset} (algo:{algo}) for {target_var}")
 
         try:
-            shutil.rmtree(f"/vol/bitbucket/rd2016/tmp_{dataset}_{target_var}")
-            shutil.rmtree(f"/vol/bitbucket/rd2016/out_{dataset}_{target_var}")
+            shutil.rmtree(f"/vol/bitbucket/rd2016/tmp_{dataset}_{target_var}_{algo}")
+            shutil.rmtree(f"/vol/bitbucket/rd2016/out_{dataset}_{target_var}_{algo}")
             print("Emptied previous tmp and out dirs")
         except:
             print("No previous tmp and out dirs")
 
 
-        auto_tune(dataset, target_var)
+        auto_tune(dataset, target_var, algo)
