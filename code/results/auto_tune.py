@@ -21,7 +21,6 @@ def auto_tune(dataset, target_var):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
     print(y)
-    print(X)
     print(X.columns)
 
     print(f"X shapes: {X_test.shape, X_train.shape}")
