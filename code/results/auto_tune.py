@@ -12,7 +12,7 @@ import yaml
 
 def auto_tune(dataset, target_var):
     print("Loading anonymized training data...")
-    data = pd.read_csv(f"{dataset}/metrics_trainset.csv")
+    data = pd.read_csv(f"{dataset}/metrics_trainset.csv").drop('precision', axis=1)
     targets = pd.read_csv(f"{dataset}/accuracies_trainset.csv")
 
     print(f"Using {target_var}...")
@@ -44,7 +44,7 @@ def auto_tune(dataset, target_var):
     print(automl.show_models())
     print(automl.sprint_statistics())
     predictions = automl.predict(X_test)
-    fn = f"autosklearn_models/automl_{dataset}_{target_var}.pkl"
+    fn = f"autosklearn_models/automl_{dataset}_{target_var}_noprec.pkl"
     outfile = open(fn, 'wb+')
     pickle.dump(automl, outfile)
 
