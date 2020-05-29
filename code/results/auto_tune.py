@@ -31,11 +31,11 @@ def auto_tune(dataset, target_var, algo):
     print(f"Starting training on {dataset}...\n")
 
     automl = autosklearn.regression.AutoSklearnRegressor(
-        time_left_for_this_task=24*60*60,
+        time_left_for_this_task=12*60*60,
         per_run_time_limit=60*60,
         disable_evaluator_output=False,
         initial_configurations_via_metalearning=False,
-        n_jobs=6,
+        n_jobs=4,
         tmp_folder=f"/vol/bitbucket/rd2016/tmp_{dataset}_{target_var}_{algo}",
         output_folder=f"/vol/bitbucket/rd2016/out_{dataset}_{target_var}_{algo}"
     )
