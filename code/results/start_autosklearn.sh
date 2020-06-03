@@ -10,7 +10,7 @@ do
       count=$((count+1))
     fi
     echo "$(printf %02d $count)corona"
-    ssh rd2016@corona$(printf %02d $count).doc.ic.ac.uk -t "htop" #"cd Entropy_utility_measure/code/results; nohup python3 auto_tune.py ${dataset} ${target} $1> ${dataset}_${target}_$1.out & "
+    ssh rd2016@corona$(printf %02d $count).doc.ic.ac.uk "cd Entropy_utility_measure/code/results; nohup python3 auto_tune.py ${dataset} ${target} $1> ${dataset}_${target}_$1.out & "
     count=$((count+1))
   done
 done

@@ -31,7 +31,7 @@ def auto_tune(dataset, target_var, algo):
     print(f"Starting training on {dataset}...\n")
 
     automl = autosklearn.regression.AutoSklearnRegressor(
-        time_left_for_this_task=12*60*60,
+        time_left_for_this_task=24*60*60,
         per_run_time_limit=60*60,
         disable_evaluator_output=False,
         initial_configurations_via_metalearning=False,
@@ -46,9 +46,10 @@ def auto_tune(dataset, target_var, algo):
     print(automl.show_models())
     print(automl.sprint_statistics())
     predictions = automl.predict(X_test)
-    fn = f"autosklearn_models/{dataset}_{target_var}_{algo}_noprec.pkl"
+    fn = f"autosklearn_models/{dataset}_{target_var}_{algo}.pkl"
     outfile = open(fn, 'wb+')
     pickle.dump(automl, outfile)
+    print("file saved at: ", fn)
 
 
 
