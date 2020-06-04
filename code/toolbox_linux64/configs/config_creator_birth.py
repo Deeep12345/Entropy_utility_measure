@@ -3,9 +3,9 @@ def config_creator(k):
     <!-- Name attributes of 'att' nodes are not used, included just for reference.-->
     <config method='Mondrian' k='{k}'>
 
-        <input filename='../../datasets/birth_control/cmc_upsampled.csv' separator=','/>
+        <input filename='../../datasets/birth_control/cmc.csv' separator=','/>
         <!-- If left blank, separator will be set as comma by default.-->
-        <output filename='../anon_data/birth_mondrian/k{k}.csv' format ='genVals'/>
+        <output filename='../anon_data/birth_mondrian/k{k}_final.csv' format ='genVals'/>
         <id> <!-- List of identifier attributes, if any, these will be excluded from the output -->
         </id>
 
@@ -53,9 +53,9 @@ def config_creator(k):
         </sens>
     </config>
     """
-    f = open(f"mondrian{k}.xml", "w+")
+    f = open(f"birth_mondrian/mondrian{k}.xml", "w+")
     f.write(config)
     f.close()
 
-for k in list(range(2,21,2)) + list(range(35, 736,15)) + [1887]:
+for k in range(2,100):
     config_creator(k)
