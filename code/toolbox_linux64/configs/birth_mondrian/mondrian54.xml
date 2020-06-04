@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+    <!-- Name attributes of 'att' nodes are not used, included just for reference.-->
+    <config method='Mondrian' k='54'>
+
+        <input filename='../../datasets/birth_control/cmc.csv' separator=','/>
+        <!-- If left blank, separator will be set as comma by default.-->
+        <output filename='../anon_data/birth_mondrian/k54_final.csv' format ='genVals'/>
+        <id> <!-- List of identifier attributes, if any, these will be excluded from the output -->
+        </id>
+
+        <qid>
+            <att index='0' name ='age'>
+                <vgh value='[16.0:49.0]'>
+                </vgh>
+            </att>
+            <att index='1' name ='wife_ed'>
+                <vgh value='[1.0:4.0]'>
+                </vgh>
+            </att>
+            <att index='2' name ='husb_ed'>
+                <vgh value='[1.0:4.0]'>
+                </vgh>
+            </att>
+            <att index='3' name ='no_kids'>
+                <vgh value='[0.0:16.0]'>
+                </vgh>
+            </att>
+            <att index='4' name ='wife_rel'>
+                <vgh value='[0.0:1.0]'>
+                </vgh>
+            </att>
+            <att index='5' name ='wife_works'>
+                <vgh value='[0.0:1.0]'>
+                </vgh>
+            </att>
+            <att index='6' name ='husb_occupation'>
+                <vgh value='[1.0:4.0]'>
+                </vgh>
+            </att>
+            <att index='7' name ='SOL_index'>
+                <vgh value='[1.0:4.0]'>
+                </vgh>
+            </att>
+            <att index='8' name ='media_exp'>
+                <vgh value='[0.0:1.0]'>
+                </vgh>
+            </att>
+        </qid>
+
+        <sens>
+            <att index='9' name='class'/>
+        </sens>
+    </config>
+    
