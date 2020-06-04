@@ -17,7 +17,7 @@ print(orig_data)
 
 accs = {}
 results = {}
-for k in [1,2]:
+for k in range(1,101):
     anon_data = pd.read_csv(f"../../anon_data/birth_mondrian/k{k}_minmaxed.csv").drop("Unnamed: 0", axis=1)
     r = {}
     print(f"####### K:{k} ##########")
@@ -29,7 +29,7 @@ for k in [1,2]:
 
     r["lr_auroc"], r["lr_acc"] = train_test(orig_data, anon_data, "lr")
     print("lr, no pca:   ", r["lr_auroc"], r["lr_acc"])
-    print("lr, pca:   ", r["lr_auroc"], r["lr_acc"])
+    results[k] = r
 print(results)
 df = pd.DataFrame.from_dict(results, orient='index')
 df.to_csv(f"accuracies.csv")
