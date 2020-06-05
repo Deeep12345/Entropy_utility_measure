@@ -8,7 +8,7 @@ import sys
 def pairwise_comparisons(model, dataset, target):
     #until new model, remove new metrics
     X_test = pd.read_csv(f"{dataset}/metrics_testset.csv")
-    X_test = X_test.drop(["lr_acc", "algo", "no", "auroc"], axis=1)
+    X_test = X_test.drop(["lr_acc", "algo", "no", "auroc", "precision"], axis=1)
 
     y_test = pd.read_csv(f"{dataset}/accuracies_testset.csv")
     y_test = y_test[target]
@@ -43,20 +43,23 @@ def pairwise_comparisons(model, dataset, target):
 # dataset = sys.argv[1]
 # target = sys.argv[2]
 
-res = {}
-for dataset in ["birth", "ring", "adult", "heart"]:
-    dataset += "_randoms"
-    r = {}
-    for target in ["lr_acc", "lr_auroc", "knn_pca_acc", "knn_pca_auroc",
-                    "rf_pca_acc", "rf_pca_auroc"]:
-        model = pickle.load(open(f"autosklearn_models/automl_{dataset}_{target}.pkl", "rb"))
-        print(model.get_models_with_weights())
+results = {}
+for algo in ["mondrian"]:#, "datafly", "datafly_shuffled"]:
+    res = {}
+    for dataset in ["birth", "ring", "adult", "heart"]:
+        dataset += "_randoms"
+        r = {}
+        for target in ["lr_acc", "lr_auroc", "knn_pca_acc", "knn_pca_auroc",
+                        "rf_pca_acc", "rf_pca_auroc"]:
+            model = pickle.load(open(f"autosklearn_models/{dataset}_{target}_{algo}.pkl", "rb"))
+            print(model.get_models_with_weights())
 
-        t_res = pairwise_comparisons(model, dataset, target)
-        r[target] = t_res
+            t_res = pairwise_comparisons(model, dataset, target)
+            r[target] = t_res
 
-    res[dataset] = r
+        res[dataset] = r
+    results[algo] = res
 
-print(res)
+print(results)
 df = pd.DataFrame.from_dict(res, orient='index')
 df.to_csv(f"correct_choices.csv",index_label=["dataset"])
