@@ -64,6 +64,7 @@ if __name__ == '__main__':
         print(f"Tuning {dataset} (algo:{algo}) for {target_var}")
 
         try:
+            print("removing dirs")
             shutil.rmtree(f"/vol/bitbucket/rd2016/tmp_{dataset}_{target_var}_{algo}")
             shutil.rmtree(f"/vol/bitbucket/rd2016/out_{dataset}_{target_var}_{algo}")
             print("Emptied previous tmp and out dirs")
