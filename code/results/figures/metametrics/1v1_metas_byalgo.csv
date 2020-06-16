@@ -1,0 +1,5 @@
+dataset,mondrian,datafly,datafly_shuffled
+birth,0.596,0.881,0.812
+ring,0.625,0.669,0.654
+adult,0.601,0.808,0.782
+heart,0.657,0.996,0.996
