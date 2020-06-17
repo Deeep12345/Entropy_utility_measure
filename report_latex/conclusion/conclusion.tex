@@ -1,0 +1,31 @@
+\chapter{Conclusion}
+
+\section{Summary}
+In this project, we proposed and carried out an analysis on the usefulness of information loss metrics as utility predictors. We first plot the utility of datasets against their corresponding metric results, and find little reason to believe the metrics to be good predictors for two reasons:
+
+\begin{enumerate}
+    \item we find that the trends are not consistent; they are different if we change the dataset used, the algorithm, or how we measure utility 
+    \item For the metrics that were consistent, we found no linear correlation with the utility, making them useless predictors.
+\end{enumerate}
+
+The first is important because metrics are used as a benchmark to measure the quality of an anonymization (in terms of utility). Because we find no consistency over different tasks, one metric value might be very good for a task, but terrible for another, and we can't know that until we run a similar experiment to the one we did here for the dataset in question. In that case, metrics are not the time-saving measures for utility they were made out to be. For the few metrics that were consistent, the trends obtained gave little reason to believe in a linear correlation, implying that the utility measured was unrelated to the metrics, and vice versa.
+
+We then derive a more quantitative measure of the metrics' usefulness in predicting utility by simulating a situation analysts will often find themselves in: we try to select the most useful dataset, out of two, basing ourselves on a metric. On most datasets, results show that using metrics granted marginally better selections, but, on average, by no more than 15\%.
+
+The final component of the project involved the creation of Meta-Metrics, regressors in the form of ensemble models trained on the metrics obtained for our datasets. We use these Meta-Metrics to represent a best case scenario on how well the metrics can predict utility. Even in this case, we show limited transferability to other contexts, and limited predictive ability, with the Meta-Metrics adding less than 10\% accuracy to the average performances of individual metrics on the same datasets.
+
+
+
+\section{Added Value}
+Metrics are used as quality guarantees in anonymization processes everywhere, and so without question. Anonymization platforms, like ARX, use them \cite{arx}. So do researchers when trying to prove the data-preservation virtues of their new $k$-anonymization algorithms \cite{mondrian}.
+
+Before this project, the only paper we found that compared a range of metrics just consisted in showing how the hyper-parameters of a $k$-anonymization impacted the metrics, taking for granted they were good predictors for utility \cite{systematic_comparisons_eval}. Instead, we take the opposite approach, measuring utility to test the metrics. Not only that, but we show that the foundations on which this was based is questionable. 
+
+This project provides an exploratory analysis of whether metrics have the significance experts claim they do. Although our project is by no means perfect, it provides enough evidence to raise doubts on the usefulness of metrics, and warrant further research.
+
+
+\section{Further Work}
+As mentioned, this project opens the door for further research into the question. We could bolster the results provided during this project by looking into other State-of-the-Art algorithms. That would hopefully allow us to see difference between algorithms with shuffled VGHs and normal ones, and call out the metrics that can't distinguish between good and bad VGHs. We could also broaden the series of metrics tested, or confirm our results on more datasets. Lastly, we could add additional privacy measures to see how they affect utility, and if the metrics can predict that.
+
+During the project, we raised a question on the effect an unbalanced $k$-anonymous dataset has on the utility of the metrics, and it remains unanswered for now. Finally, we can't help but wonder: considering the metrics we found were not good predictors for utility, could we develop one that is?
+

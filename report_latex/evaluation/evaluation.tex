@@ -1,0 +1,34 @@
+\chapter{Discussion}
+This project constitutes an exploratory analysis into the broad topic of utility metrics. We propose preliminary evidence into the fact that they are not as predictive as many claim \cite{hellinger&biv, ambiguity_metric, cm_granularity_metric, distance_metrics, ilm,ambiguity_metric,dse_metric,entropy_measure} in what we believe to be an intuitive and practical experiment. We explain why we believe our arguments to be compelling, and address the limitations to our method, and results.
+
+
+\section{Experiment Design}
+\subsection{Datasets}
+To avoid making our judgments on metrics based on a single dataset, we found four with very different characteristics. We believe these were enough to provide a more general idea of the how metrics behave. However, we found the heart dataset to perform very differently to the others. We weren't able to ascertain exactly that was the case but we think it might be due to its heavily unbalanced nature. A limitation of our method might, therefore, be that we should have picked datasets that had equivalent class distributions or to have balanced the classes before starting. 
+
+
+\subsection{Anonymization}
+We believe our method to be compelling as it addresses a lot of the components that form a $k$-anonymization: we look at the $k$ value, different algorithms, generalization trees (when relevant), and the datasets have varying sizes to account for the fact that $k$-anonymizations suppress relatively more information on smaller datasets than larger ones \cite{small_set_problem}. We further detail our thoughts on the different anonymization components:
+
+\begin{itemize}
+    \item \textbf{VGH Creation}: By creating random VGHs, not only does that allow for both good and bad generalization trees, leading to more range on the output metrics, but it removes the necessity for us to define a VGH ourselves, removing an external factor. Nevertheless, it's not without its drawbacks. Creating our random VGHs will lead to good and bad generalizations but it will lead to a lot of generalizations that would never be used in practice, which could reduce the applicability of our results. A possible, but probably infeasible, alternative would have been to collect all the available $k$-anonymous versions of the same datasets published by experts on the subject. This would have allowed us to study datasets that were totally relevant instead of ones that would never see the light of day anyway.
+    \item \textbf{Choice of $k$}: We stand by the fact that $k$ was a more useful hyper-parameter when we varied it. However, the distribution used to choose the $k$ values was a bit arbitrary, and we still found some metrics that had very small ranges, particularly amongst the Mondrian.
+    \item \textbf{Algorithms Used}: We picked two State-of-the-Art algorithms to test. We then added a variant of Datafly, Datafly-Shuffled, as a method to prove that if metrics couldn't distinguish between the utility of these then there was a problem. However, we ended up finding that the data destruction caused by Datafly algorithms was such that the two algorithms couldn't be differentiated. This rendered the Datafly-Shuffled datasets just as useful as the Datafly ones, which is to say not very. There are more powerful $k$-anonymity algorithms in literature but their implementations are not as widely spread \cite{ilm,samarati_algo, cm_granularity_metric}. Nevertheless, if we were to redo these experiments, we would pick an algorithm that uses VGHs more efficiently in the hopes to observe separate results for Datafly datasets and Datafly-Shuffled ones. This would be helpful because we could then justify that some metrics, like entropy, should not be able to distinguish between a sensible VGH, and an unordered one.
+    \item \textbf{Additional Privacy Measure}: As mentioned in the background, $k$-anonymity by itself is not a sufficient privacy measure. As such, before applying the metrics, analysts would have to further anonymize the datasets, potentially affecting the results. For example, take the classification metric. It penalizes equivalence classes that have mixed labels in them. However, if we try to protect our dataset from Homogeneity attacks, we would drop equivalence classes that are-- in terms of classification-- 
+   ``pure''. Thus, the better a $k$-anonymization manages to group records in way that make sense from a classification point of view, the more records will be dropped. Additionally, the resulting classification metric will be lower as all the pure equivalence classes will have been removed.
+\end{itemize}
+
+\subsection{Machine Learning Tasks}
+We use a set of three different classifiers, and both AUROC and accuracies, to get some coverage of classification tasks in general. We avoid data pre-processing as much as possible but needed a PCA transformation for some of the classifiers to make the training times manageable. Although this gives us a good basis, we have to take into account that data can undergo pre-processing like balancing classes or selecting features, etc... . It's hard to say how that would affect the resulting utilities of the datasets.
+
+
+Finally, in this project, we equate a dataset's utility to how well a classification task performs, trained on the dataset. This is a bit restrictive as there exist other uses for datasets that probably don't have the same requirements.
+
+\subsection{Metrics Used}
+We use a selection of metrics proposed in the literature. Particularly, we pick the ones that we find are often applied to be as relevant as possible. This is, of course, not an exhaustive list of metrics but it is definitely a good sample of them, and covers many different types.
+
+\subsection{Meta-Metrics}
+Until we added the Meta-Metrics, we only showed that individual metrics didn't have a linear correlation with utility. However, that never excluded some other relation from existing between the two, and that was a glaring limitation of this project. As an answer to that, we designed the Meta-Metrics experiment to ensure that even a trained ensemble model on all the metrics could not predict utility well. Because we can guarantee that an individual metric cannot perform better than the Meta-Metric (since it is a feature of the model), we can then show a maximum bound for the utility of an individual metric. Since even that is low, we can more safely say the link between metrics and utility is tenuous.
+
+\subsection{1v1 Method Evaluation}
+The 1v1 methods used to analyze results were an intuitive and quantitative way to assess the metrics' utility. Additionally, they emulated a realistic scenario that is at the core of how analysts use metrics. 
